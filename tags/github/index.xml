@@ -1,0 +1,23 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>github - Tag - Yongbo&#39;s Blog</title>
+        <link>https://Ellioben.github.io/tags/github/</link>
+        <description>github - Tag - Yongbo&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>xieyongbo@tom.com (XieYongbo/Ellioben)</managingEditor>
+            <webMaster>xieyongbo@tom.com (XieYongbo/Ellioben)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 10 Sep 2022 19:47:36 &#43;0800</lastBuildDate><atom:link href="https://Ellioben.github.io/tags/github/" rel="self" type="application/rss+xml" /><item>
+    <title>Gitlog</title>
+    <link>https://Ellioben.github.io/gitlog/</link>
+    <pubDate>Sat, 10 Sep 2022 19:47:36 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/gitlog/</guid>
+    <description><![CDATA[Git Changelog 原理/思路其实很简单，通过git log指令生成的日志。筛选出提交记录，提交时间。
+把这些内容提取出来，按照md格式写入发布文件中（changelog中）
+具体的筛选操作需要借助 format指令取操作。
+gitlog Format 默认git log 出来的格式并不是特别直观，很多时候想要更简便的输出更多或者更少的信息，这里列出几个git log的format。可以根据自己的需要定制。
+git log命令可一接受一个&ndash;pretty选项，来确定输出的格式.
+比如 ：
+如果我们只想输出hash.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 git log --pretty=format:&#34;%h&#34; #也可以直接使用format #e.g. git log --format=%B%aD Sat, 10 Sep 2022 16:03:16 +0800 修改文章排序 Sat, 10 Sep 2022 02:23:41 +0800 修改aidraw图片 Sat, 10 Sep 2022 01:08:54 +0800 修改aidraw Sat, 10 Sep 2022 00:43:50 +0800 添加作者链接 详细 命令 ：]]></description>
+</item>
+</channel>
+</rss>

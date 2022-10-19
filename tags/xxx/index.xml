@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>xxx - Tag - Yongbo&#39;s Blog</title>
+        <link>https://Ellioben.github.io/tags/xxx/</link>
+        <description>xxx - Tag - Yongbo&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>xieyongbo@tom.com (XieYongbo/Ellioben)</managingEditor>
+            <webMaster>xieyongbo@tom.com (XieYongbo/Ellioben)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 07 Sep 2021 16:40:32 &#43;0800</lastBuildDate><atom:link href="https://Ellioben.github.io/tags/xxx/" rel="self" type="application/rss+xml" /><item>
+    <title>Start...</title>
+    <link>https://Ellioben.github.io/demo/</link>
+    <pubDate>Tue, 07 Sep 2021 16:40:32 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/demo/</guid>
+    <description><![CDATA[第一个博客文的碎碎念 💭]]></description>
+</item>
+</channel>
+</rss>

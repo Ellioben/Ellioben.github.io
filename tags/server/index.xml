@@ -1,0 +1,34 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>server - Tag - Yongbo&#39;s Blog</title>
+        <link>https://Ellioben.github.io/tags/server/</link>
+        <description>server - Tag - Yongbo&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>xieyongbo@tom.com (XieYongbo/Ellioben)</managingEditor>
+            <webMaster>xieyongbo@tom.com (XieYongbo/Ellioben)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 07 Mar 2022 16:40:32 &#43;0800</lastBuildDate><atom:link href="https://Ellioben.github.io/tags/server/" rel="self" type="application/rss+xml" /><item>
+    <title>Nginx简单实用和案例</title>
+    <link>https://Ellioben.github.io/nginx/</link>
+    <pubDate>Mon, 07 Mar 2022 16:40:32 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/nginx/</guid>
+    <description><![CDATA[Nginx
+是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务。Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambler.ru站点（俄文：Рамблер）开发的，第一个公开版本0.1.0发布于2004年10月4日。2011年6月1日，nginx 1.0.4发布。
+其特点是占有内存少，并发能力强，事实上nginx的并发能力在同类型的网页服务器中表现较好，中国大陆使用nginx网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。在全球活跃的网站中有12.18%的使用比率，大约为2220万个网站。
+Nginx 是一个安装非常的简单、配置文件非常简洁（还能够支持perl语法）、Bug非常少的服务。Nginx 启动特别容易，并且几乎可以做到7*24不间断运行，即使运行数个月也不需要重新启动。你还能够不间断服务的情况下进行软件版本的升级。
+Nginx代码完全用C语言从头写成。官方数据测试表明能够支持高达 50,000 个并发连接数的响应。
+当然除了抗压以外还支持限流，自定义路由等等
+反向代理 代理服务端/保护服务端
+正向代理 代理客户端/保护客户端
+负载均衡 Nginx提供的负载均衡策略有2种
+内置策略和扩展策略
+内置策略：轮迿，加权轮询， Ip hash。
+扩展策略：自己定义，想怎么玩就怎么玩
+内置策略 轮询 以次循环
+加权轮询 根据权重
+IP hash phash对客户端请求的i进行hash操作，然后根据hash结果将同一个客户端p的请求分发给同一台服务器进行处理，可以解决 session不共享的问题。
+动静分离 动静分离：在我们的软件开发中，有些请求是需要后台处理的，有些请求是不需要经过后台处理的（如:css、htm、jpg、js等等文件），这些不需要经过后台处理的文件称为静态文件。让动态网站里的动态网页根据定规则把不变的资源和经常变的资源区分开来，动静资源做好了拆分以后，我们就可以根据静态资源的特点将其做缓存操作。提高资源响应的速度
+安装Nginx docker安装
+下载包安装
+1 2 3 4 5 6 7 8 9 10 11 tar -zxvf nginx-1.16.1.tar.gz #执行configure ./configure make #或 make install whereis nginx #发现nginx安装成功 启动验证 1 2 3 4 5 cd /usr/local/nginx/sbin/./nginx #启动 ./nginx -s stop #停止 .]]></description>
+</item>
+</channel>
+</rss>
