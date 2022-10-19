@@ -52,7 +52,7 @@
 8. ~~smart contract初步入门~~
 8. Solidity
 8. go的协程原理
-8. 闭包/存在的意
+8. 闭包
 
 
 ## 学习
