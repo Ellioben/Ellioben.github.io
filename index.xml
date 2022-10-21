@@ -4,7 +4,7 @@
         <link>https://Ellioben.github.io/</link>
         <description>xxx</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>xieyongbo@tom.com (XieYongbo/Ellioben)</managingEditor>
-            <webMaster>xieyongbo@tom.com (XieYongbo/Ellioben)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 09 Oct 2022 18:48:36 &#43;0800</lastBuildDate>
+            <webMaster>xieyongbo@tom.com (XieYongbo/Ellioben)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 21 Oct 2022 08:38:28 &#43;0800</lastBuildDate>
             <atom:link href="https://Ellioben.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>AIdraw</title>
@@ -22,6 +22,29 @@ colab
 我给 AI 写的描述词：“A beautiful painting of a starry night, shining its light across a sunflower sea by James Gurney, Trending on artstation.”
 扩展 还有其他推荐的网站/app，有兴趣的可以试试
 https://www.chinaz.com/2022/0825/1437982.shtml]]></description>
+</item>
+<item>
+    <title>Go的MPG模型</title>
+    <link>https://Ellioben.github.io/go%E7%9A%84mpg%E6%A8%A1%E5%9E%8B/</link>
+    <pubDate>Fri, 21 Oct 2022 08:38:28 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/go%E7%9A%84mpg%E6%A8%A1%E5%9E%8B/</guid>
+    <description><![CDATA[在操作系统提供的内核线程之上，Go搭建了一个特有的两级线程模型。goroutine机制实现了M:N的线程模型，goroutine机制是协程（coroutine）的一种实现，golang内置的调度器，可以让多核CPU中每个CPU执行一个协程。
+调度器是如何工作的 有了上面的认识，我们可以开始真正的介绍Go的并发机制了，先用一段代码展示一下在G0语言中新建一个“线程“（Go语言中称为Goroutine）的样子：
+1 2 3 4 5 //1用go关键字加上一个函数（这里用了匿名函数） //调用就做到了在一个新的“线程”并发执行任务 go func() { }() 理解goroutine机制的原理，关键是理解Go语言scheduler的实现。
+Go语言中支撑整个scheduler实现的主要有4个重要结构，分别是M、P、G、Sched，前三个定义在runtime.h中，Sched定义在proc.c中。]]></description>
+</item>
+<item>
+    <title>Closure</title>
+    <link>https://Ellioben.github.io/closure%E9%97%AD%E5%8C%85/</link>
+    <pubDate>Fri, 21 Oct 2022 08:37:23 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/closure%E9%97%AD%E5%8C%85/</guid>
+    <description><![CDATA[闭包 闭包就是一个函数和与其相关的引用环境组合的一个整体
+闭包就是返回的匿名函数+匿名函数以外的变量sum
+感受：匿名函数中引用的那个变量会一直保存在内存中，可以一直使用
+函数在创建的时候会创建两个对象，一个是函数对象本身，另一个是作用域链对象 函数在调用的时候会创建一个执行环境对象（活动对象）
+返回值是内存函数（实际是内层函数地址） 内层函数涉及到方法中的i 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 import &#34;fmt&#34; func main() { f := getSum() fmt.Println(getSum()) fmt.Println(f(100)) fmt.Println(f(2)) fmt.Println(f(3)) } func getSum() func(int) int { var sum = 0 return func(num int) int { sum = num+sum return sum } } //===-== 0x49aa70 100 102 105 注意 1、中使用的变量/参数会一直保存在内存中，所以会一直使用&mdash;&gt;意味着闭包不可滥用]]></description>
 </item>
 <item>
     <title>mac/linux好用的工具</title>
@@ -159,40 +182,6 @@ git log命令可一接受一个&ndash;pretty选项，来确定输出的格式.
     <author>Author</author>
     <guid>https://Ellioben.github.io/mycat/</guid>
     <description><![CDATA[待更新 ]]></description>
-</item>
-<item>
-    <title>Nginx简单实用和案例</title>
-    <link>https://Ellioben.github.io/nginx/</link>
-    <pubDate>Mon, 07 Mar 2022 16:40:32 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://Ellioben.github.io/nginx/</guid>
-    <description><![CDATA[Nginx
-是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务。Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambler.ru站点（俄文：Рамблер）开发的，第一个公开版本0.1.0发布于2004年10月4日。2011年6月1日，nginx 1.0.4发布。
-其特点是占有内存少，并发能力强，事实上nginx的并发能力在同类型的网页服务器中表现较好，中国大陆使用nginx网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。在全球活跃的网站中有12.18%的使用比率，大约为2220万个网站。
-Nginx 是一个安装非常的简单、配置文件非常简洁（还能够支持perl语法）、Bug非常少的服务。Nginx 启动特别容易，并且几乎可以做到7*24不间断运行，即使运行数个月也不需要重新启动。你还能够不间断服务的情况下进行软件版本的升级。
-Nginx代码完全用C语言从头写成。官方数据测试表明能够支持高达 50,000 个并发连接数的响应。
-当然除了抗压以外还支持限流，自定义路由等等
-反向代理 代理服务端/保护服务端
-正向代理 代理客户端/保护客户端
-负载均衡 Nginx提供的负载均衡策略有2种
-内置策略和扩展策略
-内置策略：轮迿，加权轮询， Ip hash。
-扩展策略：自己定义，想怎么玩就怎么玩
-内置策略 轮询 以次循环
-加权轮询 根据权重
-IP hash phash对客户端请求的i进行hash操作，然后根据hash结果将同一个客户端p的请求分发给同一台服务器进行处理，可以解决 session不共享的问题。
-动静分离 动静分离：在我们的软件开发中，有些请求是需要后台处理的，有些请求是不需要经过后台处理的（如:css、htm、jpg、js等等文件），这些不需要经过后台处理的文件称为静态文件。让动态网站里的动态网页根据定规则把不变的资源和经常变的资源区分开来，动静资源做好了拆分以后，我们就可以根据静态资源的特点将其做缓存操作。提高资源响应的速度
-安装Nginx docker安装
-下载包安装
-1 2 3 4 5 6 7 8 9 10 11 tar -zxvf nginx-1.16.1.tar.gz #执行configure ./configure make #或 make install whereis nginx #发现nginx安装成功 启动验证 1 2 3 4 5 cd /usr/local/nginx/sbin/./nginx #启动 ./nginx -s stop #停止 .]]></description>
-</item>
-<item>
-    <title>Start...</title>
-    <link>https://Ellioben.github.io/demo/</link>
-    <pubDate>Tue, 07 Sep 2021 16:40:32 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://Ellioben.github.io/demo/</guid>
-    <description><![CDATA[第一个博客文的碎碎念 💭]]></description>
 </item>
 </channel>
 </rss>
