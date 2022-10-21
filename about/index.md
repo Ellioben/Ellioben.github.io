@@ -31,9 +31,8 @@ java,go,shell,python,js,vue,web3,html,css...
 ## 🔸 技术框架：
 
 - spring，springboot，nacos，springmvc，springcloud/dubbo+zookeeper，mybatisplus，hibernate等等一些常用的java框架使用和搭建。JVM 优化，JVM 垃圾回收机制。
-- go 多线程方面的使用和开发有关的框架的使用  gin/gorm/hertz/wire 做架构解耦合工具（go 框架使用偏向于  github 上查开 
-源文档学习和使用）
-- DDD 
+- go 多线程方面使用，GPM，开发有关的框架gin/gorm/hertz/wire等等做架构使用（go 框架使用偏向于 github 上查文档学习和使用）有空也会记录上。
+- DDD 泛谈
 
 ## 🔸 DB：
 
