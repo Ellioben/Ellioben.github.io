@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://Ellioben.github.io/k8s/" /><meta property="og:image" content="https://Ellioben.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-09-22T23:58:22+08:00" />
-<meta property="article:modified_time" content="2022-10-12T18:47:51+08:00" /><meta property="og:site_name" content="Yongbo&#39; Blog" />
+<meta property="article:modified_time" content="2022-11-21T00:34:06+08:00" /><meta property="og:site_name" content="Yongbo&#39; Blog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://Ellioben.github.io/logo.png"/>
@@ -33,8 +33,8 @@
                             "url": "https:\/\/Ellioben.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "k8s, DevOps","wordcount":  488 ,
-        "url": "https:\/\/Ellioben.github.io\/k8s\/","datePublished": "2022-09-22T23:58:22+08:00","dateModified": "2022-10-12T18:47:51+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "k8s, DevOps","wordcount":  529 ,
+        "url": "https:\/\/Ellioben.github.io\/k8s\/","datePublished": "2022-09-22T23:58:22+08:00","dateModified": "2022-11-21T00:34:06+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -114,7 +114,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">K8S</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>XieYongbo/Ellioben</a></span>&nbsp;<span class="post-category">included in <a href="/categories/develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Develop</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-22">2022-09-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;488 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-22">2022-09-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;529 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/k8s/" class="leancloud_visitors" data-flag-title="K8S">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -125,16 +125,31 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#准备">准备</a></li>
+    <li><a href="#准备">准备</a>
+      <ul>
+        <li><a href="#kubeadm">Kubeadm</a></li>
+        <li><a href="#minikube">minikube</a></li>
+      </ul>
+    </li>
     <li><a href="#主节点需要组件">主节点需要组件</a></li>
+    <li><a href="#工具">工具</a></li>
     <li><a href="#常用的指令">常用的指令</a></li>
-    <li><a href="#service类型">Service类型</a></li>
     <li><a href="#组件">组件</a>
       <ul>
-        <li><a href="#pod">Pod</a></li>
-        <li><a href="#deployment">Deployment</a></li>
+        <li><a href="#pod">Pod</a>
+          <ul>
+            <li><a href="#pod生命周期">pod生命周期</a></li>
+          </ul>
+        </li>
         <li><a href="#service">Service</a></li>
-        <li><a href="#statrfuset">StatrfuSet</a></li>
+        <li><a href="#service类型">Service类型</a></li>
+        <li><a href="#controller">Controller</a>
+          <ul>
+            <li><a href="#deployment">Deployment</a></li>
+            <li><a href="#statrfuset">StatrfuSet</a></li>
+            <li><a href="#job--cron-job">job &amp; cron job</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -173,6 +188,14 @@
 <blockquote>
 <p>k8s是<strong>基于docker的。要先安装docker</strong></p>
 </blockquote>
+<h3 id="kubeadm">Kubeadm</h3>
+<blockquote>
+<p>有多台vm推荐kubeadm安装k8s环境</p>
+</blockquote>
+<h3 id="minikube">minikube</h3>
+<blockquote>
+<p>没有vm推荐使用minikube</p>
+</blockquote>
 <p>安装minikube（在docker跑了个ubantu跑了个minikube的节点）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -192,6 +215,7 @@
 <li>docker（也可以是其他容器运行时）</li>
 <li>kubectl 集群命令行交互工具</li>
 </ul>
+<h2 id="工具">工具</h2>
 <p>自己本地测试需要安装的工具</p>
 <ul>
 <li>minikube</li>
@@ -205,11 +229,9 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew install kubectl 
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install kubectl 
 </span></span><span class="line"><span class="cl">or
 </span></span><span class="line"><span class="cl">brew install kubernetes-cli
 </span></span><span class="line"><span class="cl"><span class="c1">#测试一下，确保你安装的是最新的版本：</span>
@@ -279,21 +301,7 @@
 </span></span><span class="line"><span class="cl">kubectl delete deployment test-k8s <span class="sb">`</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="service类型">Service类型</h2>
-<p><strong>ClusterIP</strong></p>
-<p>默认的，仅在集群内可用</p>
-<p><strong>NodePort</strong></p>
-<p>暴露端口到节点，提供了集群外部访问的入口
-端口范围固定 30000 ~ 32767</p>
-<p><strong>LoadBalancer</strong></p>
-<p>需要负载均衡器（通常都需要云服务商提供，裸机可以安装 <a href="https://metallb.universe.tf/" target="_blank" rel="noopener noreffer ">METALLB</a> 测试）
-会额外生成一个 IP 对外服务
-K8S 支持的负载均衡器：<a href="https://kubernetes.io/zh/docs/concepts/services-networking/service/#internal-load-balancer" target="_blank" rel="noopener noreffer ">负载均衡器</a></p>
-<p><strong>Headless</strong></p>
-<p>适合数据库
-clusterIp 设置为 None 就变成 Headless 了，不会再分配 IP，后面会再讲到具体用法
-<a href="https://kubernetes.io/zh/docs/concepts/services-networking/service/#headless-services" target="_blank" rel="noopener noreffer ">官网文档</a></p>
-<h2 id="组件">组件</h2>
+</div><h2 id="组件">组件</h2>
 <h3 id="pod">Pod</h3>
 <blockquote>
 <p>重要概念 PodK8S 调度、管理的最小单位，一个 Pod 可以包含一个或多个容器，每个 Pod 有自己的虚拟IP。一个工作节点可以有多个 pod，主节点会考量负载自动调度 pod 到哪个节点运行。</p>
@@ -331,67 +339,24 @@ clusterIp 设置为 None 就变成 Headless 了，不会再分配 IP，后面会
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">ccr.ccs.tencentyun.com/k8s-tutorial/test-k8s:v1 </span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="deployment">Deployment</h3>
-<p>管理pod的</p>
-<p>selector来识别是管理的相关pod</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">test-k8s </span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">selector:		</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">test-k8s</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">   
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">test-k8s </span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">test-k8s </span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">ccr.ccs.tencentyun.com/k8s-tutorial/test-k8s:v1</span><span class="w"> </span><span class="c"># 镜像</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>Deployment1</p>
+</div><h4 id="pod生命周期">pod生命周期</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/v3_1d24d9ab1b204909b773fdca3b3ed33c_img_000.gif"
+        data-srcset="/img/v3_1d24d9ab1b204909b773fdca3b3ed33c_img_000.gif, /img/v3_1d24d9ab1b204909b773fdca3b3ed33c_img_000.gif 1.5x, /img/v3_1d24d9ab1b204909b773fdca3b3ed33c_img_000.gif 2x"
+        data-sizes="auto"
+        alt="/img/v3_1d24d9ab1b204909b773fdca3b3ed33c_img_000.gif"
+        title="image-20221121002316447" /></p>
 <ul>
-<li>Lable1
+<li>master节点</li>
+</ul>
+<p>​	createpod &ndash; api server&ndash; etcd</p>
+<p>​	scheduler &ndash;（watch）&ndash; apiserver &ndash; etcd&ndash; 调度算法,把pod调度对应的node节点上</p>
 <ul>
-<li>Pod1</li>
-<li>Pod1</li>
+<li>node节点</li>
 </ul>
-</li>
-</ul>
-<p>Deployment2</p>
-<ul>
-<li>lable2
-<ul>
-<li>Pod2</li>
-<li>Pod2</li>
-</ul>
-</li>
-</ul>
+<p>​	kubelet &ndash;（watch）&ndash;apiserver &ndash; 读取etcd拿到分配给当前节点pod &ndash; docker创建容器 &ndash; 创建完成 &ndash; update pod status &ndash;apiserver &ndash; etcd</p>
 <h3 id="service">Service</h3>
 <ul>
 <li>Service 通过 label 关联对应的 Pod</li>
@@ -471,7 +436,83 @@ clusterIp 设置为 None 就变成 Headless 了，不会再分配 IP，后面会
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="m">31000</span><span class="w">   </span><span class="c"># 添加节点端口，范围固定 30000 ~ 32767</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="statrfuset">StatrfuSet</h3>
+</div><h3 id="service类型">Service类型</h3>
+<p><strong>ClusterIP</strong></p>
+<p>默认的，仅在集群内可用</p>
+<p><strong>NodePort</strong></p>
+<p>暴露端口到节点，提供了集群外部访问的入口
+端口范围固定 30000 ~ 32767</p>
+<p><strong>LoadBalancer</strong></p>
+<p>需要负载均衡器（通常都需要云服务商提供，裸机可以安装 <a href="https://metallb.universe.tf/" target="_blank" rel="noopener noreffer ">METALLB</a> 测试）
+会额外生成一个 IP 对外服务
+K8S 支持的负载均衡器：<a href="https://kubernetes.io/zh/docs/concepts/services-networking/service/#internal-load-balancer" target="_blank" rel="noopener noreffer ">负载均衡器</a></p>
+<p><strong>Headless</strong></p>
+<p>适合数据库
+clusterIp 设置为 None 就变成 Headless 了，不会再分配 IP，后面会再讲到具体用法
+<a href="https://kubernetes.io/zh/docs/concepts/services-networking/service/#headless-services" target="_blank" rel="noopener noreffer ">官网文档</a></p>
+<h3 id="controller">Controller</h3>
+<h4 id="deployment">Deployment</h4>
+<p>管理pod的</p>
+<p>selector来识别是管理的相关pod</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">test-k8s </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">selector:		</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">test-k8s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">   
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">test-k8s </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">test-k8s </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">ccr.ccs.tencentyun.com/k8s-tutorial/test-k8s:v1</span><span class="w"> </span><span class="c"># 镜像</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Deployment1</p>
+<ul>
+<li>Lable1
+<ul>
+<li>Pod1</li>
+<li>Pod1</li>
+</ul>
+</li>
+</ul>
+<p>Deployment2</p>
+<ul>
+<li>lable2
+<ul>
+<li>Pod2</li>
+<li>Pod2</li>
+</ul>
+</li>
+</ul>
+<h4 id="statrfuset">StatrfuSet</h4>
 <p>什么是 StatefulSet</p>
 <p>StatefulSet 是用来管理有状态的应用，例如数据库。
 前面我们部署的应用，都是不需要存储数据，不需要记住状态的，可以随意扩充副本，每个副本都是一样的，可替代的。
@@ -483,12 +524,13 @@ StatefulSet 会固定每个 Pod 的名字</p>
 <li>Pod 名字也是固定的。Pod 创建和销毁是有序的，</li>
 <li>创建是顺序的，销毁是逆序的。</li>
 </ul>
+<h4 id="job--cron-job">job &amp; cron job</h4>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-10-12&nbsp;<a class="git-hash" href="https://github.com/Ellioben/commit/25d22f4c6ae5414409fd8247bf875fe38c4b765d" target="_blank" title="commit by Obsidian Xiexxx(obsidianxiexxx@MacBook.local) 25d22f4c6ae5414409fd8247bf875fe38c4b765d: k8s文章update">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>25d22f4</a></span>
+                <span>Updated on 2022-11-21&nbsp;<a class="git-hash" href="https://github.com/Ellioben/commit/55e7ef3c37cb279255623bf9bd4c6f3afc22dd19" target="_blank" title="commit by Obsidian Xiexxx(obsidianxiexxx@MacBook.local) 55e7ef3c37cb279255623bf9bd4c6f3afc22dd19: updatek8s">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>55e7ef3</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>

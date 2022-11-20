@@ -52,7 +52,9 @@
 8. ~~smart contract初步入门~~
 8. Solidity
 8. go的协程原理
-8. 闭包
+8. ~~闭包~~
+8. Grafana详细使用
+8. pod生命周期详解
 
 
 ## 学习

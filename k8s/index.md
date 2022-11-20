@@ -27,6 +27,16 @@ k8s服务架构
 
 > k8s是**基于docker的。要先安装docker**
 
+### Kubeadm
+
+> 有多台vm推荐kubeadm安装k8s环境
+
+
+
+### minikube
+
+> 没有vm推荐使用minikube
+
 安装minikube（在docker跑了个ubantu跑了个minikube的节点）
 
 ```bash
@@ -42,14 +52,19 @@ https://k8s.easydoc.net/docs/dRiQjyTY/28366845/6GiNOzyZ/9EX8Cp45
 - docker（也可以是其他容器运行时）
 - kubectl 集群命令行交互工具
 
+
+
+## 工具
+
 自己本地测试需要安装的工具
 
 - minikube
 - kubectl
 - k9s好用的dashboard（可选）
 
-```bash
 
+
+```bash
 brew install kubectl 
 or
 brew install kubernetes-cli
@@ -57,6 +72,8 @@ brew install kubernetes-cli
 kubectl version --client
 
 ```
+
+
 
 
 
@@ -95,35 +112,6 @@ kubectl delete deployment test-k8s `
 
 
 
-
-
-## Service类型
-
-**ClusterIP**
-
-默认的，仅在集群内可用
-
-**NodePort**
-
-暴露端口到节点，提供了集群外部访问的入口
-端口范围固定 30000 ~ 32767
-
-**LoadBalancer**
-
-需要负载均衡器（通常都需要云服务商提供，裸机可以安装 [METALLB](https://metallb.universe.tf/) 测试）
-会额外生成一个 IP 对外服务
-K8S 支持的负载均衡器：[负载均衡器](https://kubernetes.io/zh/docs/concepts/services-networking/service/#internal-load-balancer)
-
-**Headless**
-
-适合数据库
-clusterIp 设置为 None 就变成 Headless 了，不会再分配 IP，后面会再讲到具体用法
-[官网文档](https://kubernetes.io/zh/docs/concepts/services-networking/service/#headless-services)
-
-
-
-
-
 ## 组件
 
 ### Pod
@@ -151,43 +139,19 @@ spec:
       image: ccr.ccs.tencentyun.com/k8s-tutorial/test-k8s:v1 
 ```
 
-### Deployment
+#### pod生命周期
 
-管理pod的
+![image-20221121002316447](/img/v3_1d24d9ab1b204909b773fdca3b3ed33c_img_000.gif)
 
-selector来识别是管理的相关pod
+- master节点
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: test-k8s 
-spec:
-  replicas: 2 
-  selector:		
-    matchLabels:
-      app: test-k8s
-  template:   
-    metadata:
-      labels:
-        app: test-k8s 
-    spec: 
-      containers:
-      - name: test-k8s 
-        image: ccr.ccs.tencentyun.com/k8s-tutorial/test-k8s:v1 # 镜像
-```
+​	createpod -- api server-- etcd
 
-Deployment1
+​	scheduler --（watch）-- apiserver -- etcd-- 调度算法,把pod调度对应的node节点上
 
-- Lable1
-  - Pod1
-  - Pod1
+- node节点
 
-Deployment2
-
-- lable2
-  - Pod2
-  - Pod2
+​	kubelet --（watch）--apiserver -- 读取etcd拿到分配给当前节点pod -- docker创建容器 -- 创建完成 -- update pod status --apiserver -- etcd
 
 
 
@@ -249,7 +213,78 @@ spec:
 
 
 
-### StatrfuSet
+### Service类型
+
+**ClusterIP**
+
+默认的，仅在集群内可用
+
+**NodePort**
+
+暴露端口到节点，提供了集群外部访问的入口
+端口范围固定 30000 ~ 32767
+
+**LoadBalancer**
+
+需要负载均衡器（通常都需要云服务商提供，裸机可以安装 [METALLB](https://metallb.universe.tf/) 测试）
+会额外生成一个 IP 对外服务
+K8S 支持的负载均衡器：[负载均衡器](https://kubernetes.io/zh/docs/concepts/services-networking/service/#internal-load-balancer)
+
+**Headless**
+
+适合数据库
+clusterIp 设置为 None 就变成 Headless 了，不会再分配 IP，后面会再讲到具体用法
+[官网文档](https://kubernetes.io/zh/docs/concepts/services-networking/service/#headless-services)
+
+
+
+
+
+### Controller
+
+#### Deployment
+
+管理pod的
+
+selector来识别是管理的相关pod
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-k8s 
+spec:
+  replicas: 2 
+  selector:		
+    matchLabels:
+      app: test-k8s
+  template:   
+    metadata:
+      labels:
+        app: test-k8s 
+    spec: 
+      containers:
+      - name: test-k8s 
+        image: ccr.ccs.tencentyun.com/k8s-tutorial/test-k8s:v1 # 镜像
+```
+
+Deployment1
+
+- Lable1
+  - Pod1
+  - Pod1
+
+Deployment2
+
+- lable2
+  - Pod2
+  - Pod2
+
+
+
+
+
+#### StatrfuSet
 
 什么是 StatefulSet
 
@@ -265,4 +300,9 @@ StatefulSet 会固定每个 Pod 的名字
 - StatefulSet 特性Service 的 `CLUSTER-IP` 是空的，
 - Pod 名字也是固定的。Pod 创建和销毁是有序的，
 - 创建是顺序的，销毁是逆序的。
+
+
+
+#### job & cron job
+
 

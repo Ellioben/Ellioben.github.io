@@ -11,7 +11,7 @@
     <author>Author</author>
     <guid>https://Ellioben.github.io/go%E7%9A%84mpg%E6%A8%A1%E5%9E%8B/</guid>
     <description><![CDATA[在操作系统提供的内核线程之上，Go搭建了一个特有的两级线程模型。goroutine机制实现了M:N的线程模型，goroutine机制是协程（coroutine）的一种实现，golang内置的调度器，可以让多核CPU中每个CPU执行一个协程。
-调度器是如何工作的 有了上面的认识，我们可以开始真正的介绍Go的并发机制了，先用一段代码展示一下在G0语言中新建一个“线程“（Go语言中称为Goroutine）的样子：
+调度器是如何工作的 有了上面的认识，可以开始真正的介绍Go的并发机制了，先用一段代码展示一下在Go语言中新建一个“线程“（Go语言中称为Goroutine）的样子：
 1 2 3 4 5 //1用go关键字加上一个函数（这里用了匿名函数） //调用就做到了在一个新的“线程”并发执行任务 go func() { }() 理解goroutine机制的原理，关键是理解Go语言scheduler的实现。
 Go语言中支撑整个scheduler实现的主要有4个重要结构，分别是M、P、G、Sched，前三个定义在runtime.h中，Sched定义在proc.c中。]]></description>
 </item>
@@ -111,10 +111,12 @@ Kubernetes 作为一个容器集群管理系统，用于管理云平台中多个
 比起k8s是构建容器编排工具来说，在我看来k8s更像是一个虚拟服务容器级别的生态圈。
 k8s服务架构
 Master node k8s集群控制节点，对集群迸行调度管理，接受集群外用户去集群操作请求; Master node由 API Server、 Scheduler、 Cluster state store（ETCD数据库）和 Controller Manger Server所组成; Worker node 集群工作节点，运行用户业务应用容器; Worker Node包含 kubelet、 kube proxy和 Container Runtime; 准备 k8s是基于docker的。要先安装docker
+Kubeadm 有多台vm推荐kubeadm安装k8s环境
+minikube 没有vm推荐使用minikube
 安装minikube（在docker跑了个ubantu跑了个minikube的节点）
 1 2 3 brew install minikube #启动 minikube start https://k8s.easydoc.net/docs/dRiQjyTY/28366845/6GiNOzyZ/9EX8Cp45
-主节点需要组件 docker（也可以是其他容器运行时） kubectl 集群命令行交互工具 自己本地测试需要安装的工具
-minikube kubectl k9s好用的dashboard（可选） 1 2 3 4 5 6 brew install kubectl or brew install kubernetes-cli #测试一下，确保你安装的是最新的版本： kubectl version --client 常用的指令 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 #创建namespase kubectl create ns test # apply 创建一个k8s组建 kubectl apply -n test -f xxxx.]]></description>
+主节点需要组件 docker（也可以是其他容器运行时） kubectl 集群命令行交互工具 工具 自己本地测试需要安装的工具
+minikube kubectl k9s好用的dashboard（可选） 1 2 3 4 5 brew install kubectl or brew install kubernetes-cli #测试一下，确保你安装的是最新的版本： kubectl version --client 常用的指令 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 #创建namespase kubectl create ns test # apply 创建一个k8s组建 kubectl apply -n test -f xxxx.]]></description>
 </item>
 <item>
     <title>Gitlog</title>
