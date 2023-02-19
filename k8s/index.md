@@ -8,7 +8,7 @@
 
 Kubernetes 作为一个容器集群管理系统，用于管理云平台中多个主机上的容器应用，[Kubernetes](https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzI0MDQ4MTM5NQ%3D%3D%26mid%3D2247509120%26idx%3D2%26sn%3D7a1541742111f5faee1716aac58bbf28%26chksm%3De918c19cde6f488a1e67f9a83ced62449027412e90ab349027e458c9a68c15dfdadb2843db63%26scene%3D21%23wechat_redirect) 的目标是让<u>部署容器化的应用变得简单且高效</u>，所以 Kubernetes 提供了应用部署，规划，更新，维护的一整套完整的机制。
 
-<u><font color='#ff4' style="font-weight:bold">比起k8s是构建容器编排工具来说，在我看来k8s更像是一个虚拟服务容器级别的生态圈。</font></u>
+<u><font color='#ff4' style="font-weight:bold">比起k8s是构建容器编排工具来说，在我看来k8s更像是一个虚拟服务容器级别的生态圈。在这个生态圈里、孵化出很多的东西（学起来没有底的)</font></u>
 
 k8s服务架构
 
@@ -118,7 +118,7 @@ kubectl delete deployment test-k8s `
 
 >重要概念 PodK8S 调度、管理的最小单位，一个 Pod 可以包含一个或多个容器，每个 Pod 有自己的虚拟IP。一个工作节点可以有多个 pod，主节点会考量负载自动调度 pod 到哪个节点运行。
 
-pod挂了会生成一个pod，新的pod的ip就变了。
+pod挂了会生成一个pod，新的pod的ip就会变了。
 
 通过
 

@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://Ellioben.github.io/k8s/" /><meta property="og:image" content="https://Ellioben.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-09-22T23:58:22+08:00" />
-<meta property="article:modified_time" content="2022-11-21T00:34:06+08:00" /><meta property="og:site_name" content="Yongbo&#39; Blog" />
+<meta property="article:modified_time" content="2023-02-19T09:50:03+08:00" /><meta property="og:site_name" content="Yongbo&#39; Blog" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://Ellioben.github.io/logo.png"/>
@@ -34,7 +34,7 @@
                             "width":  3200 ,
                             "height":  2048 
                         }],"genre": "posts","keywords": "k8s, DevOps","wordcount":  529 ,
-        "url": "https:\/\/Ellioben.github.io\/k8s\/","datePublished": "2022-09-22T23:58:22+08:00","dateModified": "2022-11-21T00:34:06+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        "url": "https:\/\/Ellioben.github.io\/k8s\/","datePublished": "2022-09-22T23:58:22+08:00","dateModified": "2023-02-19T09:50:03+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -160,7 +160,7 @@
 <p>全名Kubernetes（虚拟容器批量管理工具之一）
 学习文档 <a href="https://kubernetes.io/zh-cn/docs/tasks/tools/" target="_blank" rel="noopener noreffer ">https://kubernetes.io/zh-cn/docs/tasks/tools/</a></p>
 <p>Kubernetes 作为一个容器集群管理系统，用于管理云平台中多个主机上的容器应用，<a href="https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzI0MDQ4MTM5NQ%3D%3D%26mid%3D2247509120%26idx%3D2%26sn%3D7a1541742111f5faee1716aac58bbf28%26chksm%3De918c19cde6f488a1e67f9a83ced62449027412e90ab349027e458c9a68c15dfdadb2843db63%26scene%3D21%23wechat_redirect" target="_blank" rel="noopener noreffer ">Kubernetes</a> 的目标是让<u>部署容器化的应用变得简单且高效</u>，所以 Kubernetes 提供了应用部署，规划，更新，维护的一整套完整的机制。</p>
-<p><u><font color='#ff4' style="font-weight:bold">比起k8s是构建容器编排工具来说，在我看来k8s更像是一个虚拟服务容器级别的生态圈。</font></u></p>
+<p><u><font color='#ff4' style="font-weight:bold">比起k8s是构建容器编排工具来说，在我看来k8s更像是一个虚拟服务容器级别的生态圈。在这个生态圈里、孵化出很多的东西（学起来没有底的)</font></u></p>
 <p>k8s服务架构</p>
 <p><img
         class="lazyload"
@@ -306,7 +306,7 @@
 <blockquote>
 <p>重要概念 PodK8S 调度、管理的最小单位，一个 Pod 可以包含一个或多个容器，每个 Pod 有自己的虚拟IP。一个工作节点可以有多个 pod，主节点会考量负载自动调度 pod 到哪个节点运行。</p>
 </blockquote>
-<p>pod挂了会生成一个pod，新的pod的ip就变了。</p>
+<p>pod挂了会生成一个pod，新的pod的ip就会变了。</p>
 <p>通过</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -529,8 +529,8 @@ StatefulSet 会固定每个 Pod 的名字</p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-11-21&nbsp;<a class="git-hash" href="https://github.com/Ellioben/commit/55e7ef3c37cb279255623bf9bd4c6f3afc22dd19" target="_blank" title="commit by Obsidian Xiexxx(obsidianxiexxx@MacBook.local) 55e7ef3c37cb279255623bf9bd4c6f3afc22dd19: updatek8s">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>55e7ef3</a></span>
+                <span>Updated on 2023-02-19&nbsp;<a class="git-hash" href="https://github.com/Ellioben/commit/81a26ade4dd2f4b53dcbb3eda914b5ad0ca6deb5" target="_blank" title="commit by ellioben(xieyongbo@tom.com) 81a26ade4dd2f4b53dcbb3eda914b5ad0ca6deb5: 测试修改">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>81a26ad</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
@@ -556,7 +556,7 @@ StatefulSet 会固定每个 Pod 的名字</p>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">XieYongbo/Ellioben</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">XieYongbo/Ellioben</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
