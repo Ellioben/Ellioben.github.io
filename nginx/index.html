@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Nginx简单实用和案例 - Yongbo&#39;s Blog</title><meta name="Description" content="Nginx简单实用和案例 💭"><meta property="og:title" content="Nginx简单实用和案例" />
+<meta property="og:description" content="Nginx简单实用和案例 💭" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Ellioben.github.io/nginx/" /><meta property="og:image" content="https://Ellioben.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-07T16:40:32+08:00" />
+<meta property="article:modified_time" content="2022-10-16T22:44:08+08:00" /><meta property="og:site_name" content="Yongbo&#39; Blog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://Ellioben.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Nginx简单实用和案例"/>
+<meta name="twitter:description" content="Nginx简单实用和案例 💭"/>
+<meta name="application-name" content="Yongbo&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Yongbo&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/avatar.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://Ellioben.github.io/nginx/" /><link rel="prev" href="https://Ellioben.github.io/demo/" /><link rel="next" href="https://Ellioben.github.io/mycat/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Nginx简单实用和案例",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/Ellioben.github.io\/nginx\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/Ellioben.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "server","wordcount":  1185 ,
+        "url": "https:\/\/Ellioben.github.io\/nginx\/","datePublished": "2022-03-07T16:40:32+08:00","dateModified": "2022-10-16T22:44:08+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/Ellioben.github.io\/images\/avatar.png",
+                    "width":  625 ,
+                    "height":  625 
+                }},"author": {
+                "@type": "Person",
+                "name": "XieYongbo/Ellioben"
+            },"description": "Nginx简单实用和案例 💭"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Yongbo&#39;s Blog"><span class="header-title-pre"><i class='far fa-user-circle fa-fw'  style='color: #77fd9f'></i></span> XieYongbo&#39;s Blog<span class="header-title-post"> 🌈</span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/develop/"> Develop </a><a class="menu-item" href="/about/"> About Me 🤠 </a><a class="menu-item" href="https://github.com/Ellioben" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Yongbo&#39;s Blog"><span class="header-title-pre"><i class='far fa-user-circle fa-fw'  style='color: #77fd9f'></i></span> XieYongbo&#39;s Blog<span class="header-title-post"> 🌈</span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/develop/" title="">Develop</a><a class="menu-item" href="/about/" title="">About Me 🤠</a><a class="menu-item" href="https://github.com/Ellioben" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Nginx简单实用和案例</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>XieYongbo/Ellioben</a></span>&nbsp;<span class="post-category">included in <a href="/categories/develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Develop</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-03-07">2022-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1185 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;<span id="/nginx/" class="leancloud_visitors" data-flag-title="Nginx简单实用和案例">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#反向代理">反向代理</a></li>
+    <li><a href="#正向代理">正向代理</a></li>
+    <li><a href="#负载均衡">负载均衡</a></li>
+    <li><a href="#内置策略">内置策略</a>
+      <ul>
+        <li><a href="#轮询">轮询</a></li>
+        <li><a href="#加权轮询">加权轮询</a></li>
+        <li><a href="#ip-hash">IP hash</a></li>
+      </ul>
+    </li>
+    <li><a href="#动静分离">动静分离</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#启动验证">启动验证</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#配置">配置</a></li>
+    <li><a href="#配置解析">配置解析</a></li>
+    <li><a href="#nginx配置生成器">Nginx配置生成器</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Nginx</p>
+<p>是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务。Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambler.ru站点（俄文：Рамблер）开发的，第一个公开版本0.1.0发布于2004年10月4日。2011年6月1日，nginx 1.0.4发布。</p>
+<p>其特点是占有内存少，并发能力强，事实上nginx的并发能力在同类型的网页服务器中表现较好，中国大陆使用nginx网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。在全球活跃的网站中有12.18%的使用比率，大约为2220万个网站。</p>
+<p>Nginx 是一个安装非常的简单、配置文件非常简洁（还能够支持perl语法）、Bug非常少的服务。Nginx 启动特别容易，并且几乎可以做到7*24不间断运行，即使运行数个月也不需要重新启动。你还能够不间断服务的情况下进行软件版本的升级。</p>
+<p><strong>Nginx代码完全用C语言从头写成。官方数据测试表明能够支持高达 50,000 个并发连接数的响应。</strong></p>
+<blockquote>
+<p>当然除了抗压以外还支持限流，自定义路由等等</p>
+</blockquote>
+<h2 id="反向代理">反向代理</h2>
+<p>代理服务端/保护服务端</p>
+<h2 id="正向代理">正向代理</h2>
+<p>代理客户端/保护客户端</p>
+<h2 id="负载均衡">负载均衡</h2>
+<blockquote>
+<p>Nginx提供的负载均衡策略有2种</p>
+</blockquote>
+<p><strong>内置策略和扩展策略</strong></p>
+<p>内置策略：轮迿，加权轮询， Ip hash。</p>
+<p>扩展策略：自己定义，想怎么玩就怎么玩</p>
+<h2 id="内置策略">内置策略</h2>
+<h3 id="轮询">轮询</h3>
+<p>以次循环</p>
+<h3 id="加权轮询">加权轮询</h3>
+<p>根据权重</p>
+<h3 id="ip-hash">IP hash</h3>
+<p>phash对客户端请求的i进行hash操作，然后根据hash结果将同一个客户端p的请求分发给同一台服务器进行处理，可以解决 session不共享的问题。</p>
+<h2 id="动静分离">动静分离</h2>
+<p>动静分离：在我们的软件开发中，有些请求是需要后台处理的，有些请求是不需要经过后台处理的（如:css、htm、jpg、js等等文件），这些不需要经过后台处理的文件称为静态文件。让动态网站里的动态网页根据定规则把不变的资源和经常变的资源区分开来，动静资源做好了拆分以后，我们就可以根据静态资源的特点将其做缓存操作。提高资源响应的速度</p>
+<h1 id="安装nginx">安装Nginx</h1>
+<p>docker安装</p>
+<p>下载包安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">tar -zxvf nginx-1.16.1.tar.gz
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#执行configure</span>
+</span></span><span class="line"><span class="cl">./configure
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl"><span class="c1">#或</span>
+</span></span><span class="line"><span class="cl">make install
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">whereis nginx
+</span></span><span class="line"><span class="cl"><span class="c1">#发现nginx安装成功</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="启动验证">启动验证</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /usr/local/nginx/sbin/./nginx  <span class="c1">#启动</span>
+</span></span><span class="line"><span class="cl">./nginx -s stop  <span class="c1">#停止</span>
+</span></span><span class="line"><span class="cl">./nginx -s quit  <span class="c1">#安全退出</span>
+</span></span><span class="line"><span class="cl">./nginx -s reload  <span class="c1">#重新加载配置文件</span>
+</span></span><span class="line"><span class="cl">ps aux<span class="p">|</span>grep nginx  <span class="c1">#查看nginx进程</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>启动成功访问 服务器ip:80</p>
+<p>http:80</p>
+<p>https:443</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>linux防火墙80端口有没有开</li>
+<li>阿里云安全组的80端口放开</li>
+</ul>
+<h1 id="使用">使用</h1>
+<p>nginx的配置文件是conf目录下的nginx.conf，默认配置的nginx监听的端口为80，如果80端口被占用可以修改为未被占用的端口即可。</p>
+<p><strong>当我们修改了nginx的配置文件nginx.conf 时，不需要关闭nginx后重新启动nginx，只需要执行命令 <code>nginx -s reload</code> 即可让改动生效</strong></p>
+<p><strong>关闭nginx</strong></p>
+<p>如果使用cmd命令窗口启动nginx， 关闭cmd窗口是不能结束nginx进程的，可使用两种方法关闭nginx</p>
+<p>(1)输入nginx命令 <code>nginx -s stop</code>(快速停止nginx) 或 <code>nginx -s quit</code>(完整有序的停止nginx)</p>
+<p>(2)使用taskkill <code>taskkill /f /t /im nginx.exe</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">taskkill是用来终止进程的，/f是强制终止 ./t终止指定的进程和任何由此启动的子进程。/im示指定的进程名称 .
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>相关命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 开启</span>
+</span></span><span class="line"><span class="cl">service firewalld start
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启</span>
+</span></span><span class="line"><span class="cl">service firewalld restart
+</span></span><span class="line"><span class="cl"><span class="c1"># 关闭</span>
+</span></span><span class="line"><span class="cl">service firewalld stop
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看防火墙规则</span>
+</span></span><span class="line"><span class="cl">firewall-cmd --list-all
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询端口是否开放</span>
+</span></span><span class="line"><span class="cl">firewall-cmd --query-port<span class="o">=</span>8080/tcp
+</span></span><span class="line"><span class="cl"><span class="c1"># 开放80端口</span>
+</span></span><span class="line"><span class="cl">firewall-cmd --permanent --add-port<span class="o">=</span>80/tcp
+</span></span><span class="line"><span class="cl"><span class="c1"># 移除端口</span>
+</span></span><span class="line"><span class="cl">firewall-cmd --permanent --remove-port<span class="o">=</span>8080/tcp
+</span></span><span class="line"><span class="cl"><span class="c1">#重启防火墙(修改配置后要重启防火墙)</span>
+</span></span><span class="line"><span class="cl">firewall-cmd --reload
+</span></span><span class="line"><span class="cl"><span class="c1"># 参数解释</span>
+</span></span><span class="line"><span class="cl">1、firwall-cmd：是Linux提供的操作firewall的一个工具；
+</span></span><span class="line"><span class="cl">2、--permanent：表示设置为持久；
+</span></span><span class="line"><span class="cl">3、--add-port：标识添加的端口；
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="配置">配置</h2>
+<p>Nginx的主配置文件是nginx.conf，这个配置文件一共由三部分组成，分别为全局块、events块和http块。在http块中，又包含http全局块、多个server块。每个server块中，可以包含server全局块和多个location块。在同一配置块中嵌套的配置块，各个之间不存在次序关系。</p>
+<p>配置文件支持大量可配置的指令，绝大多数指令不是特定属于某一个块的。同一个指令放在不同层级的块中，其作用域也不同，一般情况下，高一级块中的指令可以作用于自身所在的块和此块包含的所有低层级块。如果某个指令在两个不同层级的块中同时出现，则采用“就近原则”，即以较低层级块中的配置为准。比如，某指令同时出现在http全局块中和server块中，并且配置不同，则应该以server块中的配置为准。</p>
+<p>整个配置文件的结构大致如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c">#全局块</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#user  nobody;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">worker_processes  1;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#event块</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">events {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">worker_connections  1024;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#http块</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">http {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#http全局块</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">include       mime.types;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">default_type  application/octet-stream;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">sendfile        on;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">keepalive_timeout  65;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#server块</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">server {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#server全局块</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">listen       8000;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">server_name  localhost;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#location块</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">location / {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">root   html;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">index  index.html index.htm;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">error_page   500 502 503 504  /50x.html;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">location = /50x.html {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">root   html;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#这边可以有多个server块</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">server {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>}<span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="配置解析">配置解析</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span><span class="lnt">327
+</span><span class="lnt">328
+</span><span class="lnt">329
+</span><span class="lnt">330
+</span><span class="lnt">331
+</span><span class="lnt">332
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c">######Nginx配置文件nginx.conf中文详解#####</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#定义Nginx运行的用户和用户组</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">user www www;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#nginx进程数，建议设置为等于CPU总核心数。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">worker_processes 8;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">error_log /usr/local/nginx/logs/error.log info;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#进程pid文件</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">pid /usr/local/nginx/logs/nginx.pid;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#指定进程可以打开的最大描述符：数目</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#工作模式与连接数上限</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#这个指令是指当一个nginx进程打开的最多文件描述符数目，理论值应该是最多打开文件数（ulimit -n）与nginx进程数相除，但是nginx分配请求并不是那么均匀，所以最好与ulimit -n 的值保持一致。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#现在在linux 2.6内核下开启文件打开数为65535，worker_rlimit_nofile就相应应该填写65535。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#这是因为nginx调度时分配请求到进程并不是那么的均衡，所以假如填写10240，总并发量达到3-4万时就有进程可能超过10240了，这时会返回502错误。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">worker_rlimit_nofile 65535;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">events</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>{<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#参考事件模型，use [ kqueue | rtsig | epoll | /dev/poll | select | poll ]; epoll模型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#是Linux 2.6以上版本内核中的高性能网络I/O模型，linux建议epoll，如果跑在FreeBSD上面，就用kqueue模型。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#补充说明：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#与apache相类，nginx针对不同的操作系统，有不同的事件模型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#A）标准事件模型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#Select、poll属于标准事件模型，如果当前系统不存在更有效的方法，nginx会选择select或poll</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#B）高效事件模型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#Kqueue：使用于FreeBSD 4.1+, OpenBSD 2.9+, NetBSD 2.0 和 MacOS X.使用双处理器的MacOS X系统使用kqueue可能会造成内核崩溃。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#Epoll：使用于Linux内核2.6版本及以后的系统。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#/dev/poll：使用于Solaris 7 11/99+，HP/UX 11.22+ (eventport)，IRIX 6.5.15+ 和 Tru64 UNIX 5.1A+。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#Eventport：使用于Solaris 10。 为了防止出现内核崩溃的问题， 有必要安装安全补丁。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">use epoll;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#单个进程最大连接数（最大连接数=连接数*进程数）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#根据硬件调整，和前面工作进程配合起来用，尽量大，但是别把cpu跑到100%就行。每个进程允许的最多连接数，理论上每台nginx服务器的最大连接数为。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">worker_connections 65535;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#keepalive超时时间。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">keepalive_timeout 60;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#客户端请求头部的缓冲区大小。这个可以根据你的系统分页大小来设置，一般一个请求头的大小不会超过1k，不过由于一般系统分页都要大于1k，所以这里设置为分页大小。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#分页大小可以用命令getconf PAGESIZE 取得。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#[root@web001 ~]# getconf PAGESIZE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#4096</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#但也有client_header_buffer_size超过4k的情况，但是client_header_buffer_size该值必须设置为“系统分页大小”的整倍数。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">client_header_buffer_size 4k;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#这个将为打开文件指定缓存，默认是没有启用的，max指定缓存数量，建议和打开文件数一致，inactive是指经过多长时间文件没被请求后删除缓存。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">open_file_cache max=65535 inactive=60s;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#这个是指多长时间检查一次缓存的有效信息。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#语法:open_file_cache_valid time 默认值:open_file_cache_valid 60 使用字段:http, server, location 这个指令指定了何时需要检查open_file_cache中缓存项目的有效信息.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">open_file_cache_valid 80s;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#open_file_cache指令中的inactive参数时间内文件的最少使用次数，如果超过这个数字，文件描述符一直是在缓存中打开的，如上例，如果有一个文件在inactive时间内一次没被使用，它将被移除。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#语法:open_file_cache_min_uses number 默认值:open_file_cache_min_uses 1 使用字段:http, server, location  这个指令指定了在open_file_cache指令无效的参数中一定的时间范围内可以使用的最小文件数,如果使用更大的值,文件描述符在cache中总是打开状态.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">open_file_cache_min_uses 1;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#语法:open_file_cache_errors on | off 默认值:open_file_cache_errors off 使用字段:http, server, location 这个指令指定是否在搜索一个文件时记录cache错误.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">open_file_cache_errors on;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#设定http服务器，利用它的反向代理功能提供负载均衡支持</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">http</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>{<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#文件扩展名与文件类型映射表</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">include mime.types;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#默认文件类型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">default_type application/octet-stream;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#默认编码</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#charset utf-8;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#服务器名字的hash表大小</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#保存服务器名字的hash表是由指令server_names_hash_max_size 和server_names_hash_bucket_size所控制的。参数hash bucket size总是等于hash表的大小，并且是一路处理器缓存大小的倍数。在减少了在内存中的存取次数后，使在处理器中加速查找hash表键值成为可能。如果hash bucket size等于一路处理器缓存的大小，那么在查找键的时候，最坏的情况下在内存中查找的次数为2。第一次是确定存储单元的地址，第二次是在存储单元中查找键 值。因此，如果Nginx给出需要增大hash max size 或 hash bucket size的提示，那么首要的是增大前一个参数的大小.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">server_names_hash_bucket_size 128;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#客户端请求头部的缓冲区大小。这个可以根据你的系统分页大小来设置，一般一个请求的头部大小不会超过1k，不过由于一般系统分页都要大于1k，所以这里设置为分页大小。分页大小可以用命令getconf PAGESIZE取得。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">client_header_buffer_size 32k;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#客户请求头缓冲大小。nginx默认会用client_header_buffer_size这个buffer来读取header值，如果header过大，它会使用large_client_header_buffers来读取。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">large_client_header_buffers 4 64k;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#设定通过nginx上传文件的大小</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">client_max_body_size 8m;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#开启高效文件传输模式，sendfile指令指定nginx是否调用sendfile函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络I/O处理速度，降低系统的负载。注意：如果图片显示不正常把这个改成off。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#sendfile指令指定 nginx 是否调用sendfile 函数（zero copy 方式）来输出文件，对于普通应用，必须设为on。如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络IO处理速度，降低系统uptime。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">sendfile on;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#开启目录列表访问，合适下载服务器，默认关闭。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">autoindex on;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#此选项允许或禁止使用socke的TCP_CORK的选项，此选项仅在使用sendfile的时候使用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">tcp_nopush on;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">tcp_nodelay on;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#长连接超时时间，单位是秒</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">keepalive_timeout 120;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#FastCGI相关参数是为了改善网站的性能：减少资源占用，提高访问速度。下面参数看字面意思都能理解。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">fastcgi_connect_timeout 300;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">fastcgi_send_timeout 300;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">fastcgi_read_timeout 300;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">fastcgi_buffer_size 64k;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">fastcgi_buffers 4 64k;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">fastcgi_busy_buffers_size 128k;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">fastcgi_temp_file_write_size 128k;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#gzip模块设置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">gzip on;</span><span class="w"> </span><span class="c">#开启gzip压缩输出</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">gzip_min_length 1k;   </span><span class="w"> </span><span class="c">#最小压缩文件大小</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">gzip_buffers 4 16k;   </span><span class="w"> </span><span class="c">#压缩缓冲区</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">gzip_http_version 1.0;   </span><span class="w"> </span><span class="c">#压缩版本（默认1.1，前端如果是squid2.5请使用1.0）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">gzip_comp_level 2;   </span><span class="w"> </span><span class="c">#压缩等级</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">gzip_types text/plain application/x-javascript text/css application/xml;   </span><span class="w"> </span><span class="c">#压缩类型，默认就已经包含textml，所以下面就不用再写了，写上去也不会有问题，但是会有一个warn。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">gzip_vary on;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#开启限制IP连接数的时候需要使用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#limit_zone crawler $binary_remote_addr 10m;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#负载均衡配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">upstream jh.w3cschool.cn {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">server 192.168.80.121:80 weight=3;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">server 192.168.80.122:80 weight=2;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">server 192.168.80.123:80 weight=3;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#nginx的upstream目前支持4种方式的分配</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#1、轮询（默认）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#2、weight</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#例如：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#upstream bakend {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    server 192.168.0.14 weight=10;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    server 192.168.0.15 weight=10;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#2、ip_hash</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#例如：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#upstream bakend {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    ip_hash;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    server 192.168.0.14:88;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    server 192.168.0.15:80;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#3、fair（第三方）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#按后端服务器的响应时间来分配请求，响应时间短的优先分配。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#upstream backend {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    server server1;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    server server2;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    fair;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#4、url_hash（第三方）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存时比较有效。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#例：在upstream中加入hash语句，server语句中不能写入weight等其他的参数，hash_method是使用的hash算法</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#upstream backend {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    server squid1:3128;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    server squid2:3128;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    hash $request_uri;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    hash_method crc32;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#tips:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#upstream bakend{#定义负载均衡设备的Ip及设备状态}{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    ip_hash;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    server 127.0.0.1:9090 down;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    server 127.0.0.1:8080 weight=2;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    server 127.0.0.1:6060;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#    server 127.0.0.1:7070 backup;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#在需要使用负载均衡的server中增加 proxy_pass http://bakend/;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#每个设备的状态设置为:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#1.down表示单前的server暂时不参与负载</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#2.weight为weight越大，负载的权重就越大。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#3.max_fails：允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream模块定义的错误</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#4.fail_timeout:max_fails次失败后，暂停的时间。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#5.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#nginx支持同时设置多组的负载均衡，用来给不用的server来使用。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#client_body_in_file_only设置为On 可以讲client post过来的数据记录到文件中用来做debug</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#client_body_temp_path设置记录文件的目录 可以设置最多3层目录</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#location对URL进行匹配.可以进行重定向或者进行新的代理 负载均衡</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     
+</span></span></span><span class="line"><span class="cl"><span class="w">     
+</span></span></span><span class="line"><span class="cl"><span class="w">     
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#虚拟主机的配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">server</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>{<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#监听端口</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">listen 80;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#域名可以有多个，用空格隔开</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">server_name www.w3cschool.cn w3cschool.cn;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">index index.html index.htm index.php;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">root /data/www/w3cschool;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#对******进行负载均衡</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">location ~ .*.(php|php5)?$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>{<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">fastcgi_pass 127.0.0.1:9000;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">fastcgi_index index.php;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">include fastcgi.conf;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#图片缓存时间设置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">location ~ .*.(gif|jpg|jpeg|png|bmp|swf)$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>{<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">expires 10d;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#JS和CSS缓存时间设置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">location ~ .*.(js|css)?$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>{<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">expires 1h;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#日志格式设定</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#$remote_addr与$http_x_forwarded_for用以记录客户端的ip地址；</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#$remote_user：用来记录客户端用户名称；</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#$time_local： 用来记录访问时间与时区；</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#$request： 用来记录请求的url与http协议；</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#$status： 用来记录请求状态；成功是200，</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#$body_bytes_sent ：记录发送给客户端文件主体内容大小；</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#$http_referer：用来记录从那个页面链接访问过来的；</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#$http_user_agent：记录客户浏览器的相关信息；</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#通常web服务器放在反向代理的后面，这样就不能获取到客户的IP地址了，通过$remote_add拿到的IP地址是反向代理服务器的iP地址。反向代理服务器在转发请求的http头信息中，可以增加x_forwarded_for信息，用以记录原有客户端的IP地址和原来客户端的请求的服务器地址。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">log_format access &#39;$remote_addr - $remote_user [$time_local] &#34;$request&#34; &#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="s1">&#39;$status $body_bytes_sent &#34;$http_referer&#34; &#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="s1">&#39;&#34;$http_user_agent&#34; $http_x_forwarded_for&#39;</span><span class="l">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#定义本虚拟主机的访问日志</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">access_log  /usr/local/nginx/logs/host.access.log  main;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">access_log  /usr/local/nginx/logs/host.access.404.log  log404;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#对 &#34;/&#34; 启用反向代理</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">location / {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_pass http://127.0.0.1:88;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_redirect off;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_set_header X-Real-IP $remote_addr;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">             
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">             
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#以下是一些反向代理的配置，可选。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_set_header Host $host;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#允许客户端请求的最大单文件字节数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">client_max_body_size 10m;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#缓冲区代理缓冲用户端请求的最大字节数，</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#如果把它设置为比较大的数值，例如256k，那么，无论使用firefox还是IE浏览器，来提交任意小于256k的图片，都很正常。如果注释该指令，使用默认的client_body_buffer_size设置，也就是操作系统页面大小的两倍，8k或者16k，问题就出现了。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#无论使用firefox4.0还是IE8.0，提交一个比较大，200k左右的图片，都返回500 Internal Server Error错误</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">client_body_buffer_size 128k;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#表示使nginx阻止HTTP应答代码为400或者更高的应答。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_intercept_errors on;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#后端服务器连接的超时时间_发起握手等候响应超时时间</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#nginx跟后端服务器连接超时时间(代理连接超时)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_connect_timeout 90;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#后端服务器数据回传时间(代理发送超时)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#后端服务器数据回传时间_就是在规定时间之内后端服务器必须传完所有的数据</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_send_timeout 90;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#连接成功后，后端服务器响应时间(代理接收超时)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#连接成功后_等候后端服务器响应时间_其实已经进入后端的排队之中等候处理（也可以说是后端服务器处理请求的时间）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_read_timeout 90;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#设置代理服务器（nginx）保存用户头信息的缓冲区大小</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#设置从被代理服务器读取的第一部分应答的缓冲区大小，通常情况下这部分应答中包含一个小的应答头，默认情况下这个值的大小为指令proxy_buffers中指定的一个缓冲区的大小，不过可以将其设置为更小</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_buffer_size 4k;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#proxy_buffers缓冲区，网页平均在32k以下的设置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#设置用于读取应答（来自被代理服务器）的缓冲区数目和大小，默认情况也为分页大小，根据操作系统的不同可能是4k或者8k</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_buffers 4 32k;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#高负荷下缓冲大小（proxy_buffers*2）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_busy_buffers_size 64k;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#设置在写入proxy_temp_path时数据的大小，预防一个工作进程在传递文件时阻塞太长</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#设定缓存文件夹大小，大于这个值，将从upstream服务器传</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_temp_file_write_size 64k;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         
+</span></span></span><span class="line"><span class="cl"><span class="w">         
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#设定查看Nginx状态的地址</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">location /NginxStatus {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">stub_status on;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">access_log on;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">auth_basic &#34;NginxStatus&#34;;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">auth_basic_user_file confpasswd;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#htpasswd文件的内容可以用apache提供的htpasswd工具来产生。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#本地动静分离反向代理配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#所有jsp的页面均交由tomcat或resin处理</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">location ~ .(jsp|jspx|do)?$ {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_set_header Host $host;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_set_header X-Real-IP $remote_addr;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">proxy_pass http://127.0.0.1:8080;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c">#所有静态文件由nginx直接读取不经过tomcat或resin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">location ~ .*.(htm|html|gif|jpg|jpeg|png|bmp|swf|ioc|rar|zip|txt|flv|mid|doc|ppt|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">pdf|xls|mp3|wma)$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>{<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">expires 15d; </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">location ~ .*.(js|css)?$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>{<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="l">expires 1h;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">######Nginx配置文件nginx.conf中文详解#####</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="nginx配置生成器">Nginx配置生成器</h2>
+<p><a href="https://www.digitalocean.com/community/tools/nginx" target="_blank" rel="noopener noreffer ">https://www.digitalocean.com/community/tools/nginx</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-10-16&nbsp;<a class="git-hash" href="https://github.com/Ellioben/commit/52f6676d9281be18927d1c3620708e61bb2cf660" target="_blank" title="commit by Obsidian Xiexxx(obsidianxiexxx@MacBook.local) 52f6676d9281be18927d1c3620708e61bb2cf660: 更新aboutme">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>52f6676</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/nginx/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://Ellioben.github.io/nginx/" data-title="Nginx简单实用和案例" data-hashtags="server"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://Ellioben.github.io/nginx/" data-title="Nginx简单实用和案例"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://Ellioben.github.io/nginx/" data-title="Nginx简单实用和案例"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://Ellioben.github.io/nginx/" data-title="Nginx简单实用和案例"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/server/">server</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/demo/" class="prev" rel="prev" title="Start..."><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Start...</a>
+            <a href="/mycat/" class="next" rel="next" title="Mycat">Mycat<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">XieYongbo/Ellioben</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"1ZsjXAkSGTXqXP2DgEq00qZl-MdYXbMMI","appKey":"Cmw3pGXbBkFdmYP1md9NYuBE","avatar":"wavatar","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"🍿 欢迎在这里提问和讨论...","recordIP":true,"serverURLs":"https://mukjinfv.api.lncldglobal.com","visitor":true}},"lightgallery":true,"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

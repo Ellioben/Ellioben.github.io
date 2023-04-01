@@ -1,0 +1,56 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tools - Category - Yongbo&#39;s Blog</title>
+        <link>https://Ellioben.github.io/categories/tools/</link>
+        <description>Tools - Category - Yongbo&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>xieyongbo@tom.com (XieYongbo/Ellioben)</managingEditor>
+            <webMaster>xieyongbo@tom.com (XieYongbo/Ellioben)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://Ellioben.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+    <title>AIdraw</title>
+    <link>https://Ellioben.github.io/aidraw/</link>
+    <pubDate>Thu, 07 Apr 2022 16:40:32 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/aidraw/</guid>
+    <description><![CDATA[AI绘画的软件和平台有很多种，不同的平台对AI绘画的限制也不同，现在主要介绍Google的一个开源项目
+注意：需要google drive
+colab
+这个可以通过描述来绘画，害可以设置图片分辨率，图片大小。 英语不好的同学可以通过google翻译来翻译自己想说的话，放在上面
+没错，肉眼不可见的速度
+生成画作的流程大概分为这几步：
+打开程序； 设置图片尺寸 过程图张数 生成图张数等参数 用英文写好描述词（Prompts），格式大致为“画作类型 + 对象（可以有多个）+ 画风设定 + 一些起限定作用的修辞词” 开始运行，等待 AI 渲染画作。 执行run all
+我给 AI 写的描述词：“A beautiful painting of a starry night, shining its light across a sunflower sea by James Gurney, Trending on artstation.”
+扩展 还有其他推荐的网站/app，有兴趣的可以试试
+https://www.chinaz.com/2022/0825/1437982.shtml]]></description>
+</item>
+<item>
+    <title>mac/linux好用的工具</title>
+    <link>https://Ellioben.github.io/mactool/</link>
+    <pubDate>Sun, 09 Oct 2022 18:48:36 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/mactool/</guid>
+    <description><![CDATA[mac/linux好用的工具
+crontab 1、Linux和Mac下操作crontab都是一致的
+2、配置文件都在/etc/crontab下，如果没有就创建。
+3、crontab参数
+crontab [-u user] file crontab [-u user] [ -e | -l | -r ]
+-u user：用来设定某个用户的crontab服务； file：file是命令文件的名字,表示将file做为crontab的任务列表文件并载入crontab。如果在命令行中没有指定这个文件，crontab命令将接受标准输入（键盘）上键入的命令，并将它们载入crontab。 -e：编辑某个用户的crontab文件内容。如果不指定用户，则表示编辑当前用户的crontab文件。 -l：显示某个用户的crontab文件内容，如果不指定用户，则表示显示当前用户的crontab文件内容。 -r：从/var/spool/cron目录中删除某个用户的crontab文件，如果不指定用户，则默认删除当前用户的crontab文件。 -i：在删除用户的crontab文件时给确认提示。 4、配置环境变量，打开open ~/.bash_profile文件添加以下内容;
+EDITOR=vim crontab -e；export EDITOR
+5、crontab的文件格式
+1 eg：* * * * * sh /xxxxx/davecron.sh &gt;&gt;/xxxxx/davecron.log 查看当前的cron job 1 2 sudo crontab -l 35 22 * * * /Users/xxx/shell/openSafari.sh 添加cron job 1 2 3 4 5 6 7 8 9 10 11 sudo crontab -e 35 22 * * * /Users/xxx/shell/openSafari.]]></description>
+</item>
+<item>
+    <title>Gitlog</title>
+    <link>https://Ellioben.github.io/gitlog/</link>
+    <pubDate>Sat, 10 Sep 2022 19:47:36 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/gitlog/</guid>
+    <description><![CDATA[Git Changelog 原理/思路其实很简单，通过git log指令生成的日志。筛选出提交记录，提交时间。
+把这些内容提取出来，按照md格式写入发布文件中（changelog中）
+具体的筛选操作需要借助 format指令取操作。
+gitlog Format 默认git log 出来的格式并不是特别直观，很多时候想要更简便的输出更多或者更少的信息，这里列出几个git log的format。可以根据自己的需要定制。
+git log命令可一接受一个&ndash;pretty选项，来确定输出的格式.
+比如 ：
+如果我们只想输出hash.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 git log --pretty=format:&#34;%h&#34; #也可以直接使用format #e.g. git log --format=%B%aD Sat, 10 Sep 2022 16:03:16 +0800 修改文章排序 Sat, 10 Sep 2022 02:23:41 +0800 修改aidraw图片 Sat, 10 Sep 2022 01:08:54 +0800 修改aidraw Sat, 10 Sep 2022 00:43:50 +0800 添加作者链接 详细 命令 ：]]></description>
+</item>
+</channel>
+</rss>

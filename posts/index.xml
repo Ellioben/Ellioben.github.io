@@ -1,0 +1,187 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>All Posts - Yongbo&#39;s Blog</title>
+        <link>https://Ellioben.github.io/posts/</link>
+        <description>All Posts | Yongbo&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>xieyongbo@tom.com (XieYongbo/Ellioben)</managingEditor>
+            <webMaster>xieyongbo@tom.com (XieYongbo/Ellioben)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 21 Oct 2022 08:38:28 &#43;0800</lastBuildDate><atom:link href="https://Ellioben.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>AIdraw</title>
+    <link>https://Ellioben.github.io/aidraw/</link>
+    <pubDate>Thu, 07 Apr 2022 16:40:32 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/aidraw/</guid>
+    <description><![CDATA[AI绘画的软件和平台有很多种，不同的平台对AI绘画的限制也不同，现在主要介绍Google的一个开源项目
+注意：需要google drive
+colab
+这个可以通过描述来绘画，害可以设置图片分辨率，图片大小。 英语不好的同学可以通过google翻译来翻译自己想说的话，放在上面
+没错，肉眼不可见的速度
+生成画作的流程大概分为这几步：
+打开程序； 设置图片尺寸 过程图张数 生成图张数等参数 用英文写好描述词（Prompts），格式大致为“画作类型 + 对象（可以有多个）+ 画风设定 + 一些起限定作用的修辞词” 开始运行，等待 AI 渲染画作。 执行run all
+我给 AI 写的描述词：“A beautiful painting of a starry night, shining its light across a sunflower sea by James Gurney, Trending on artstation.”
+扩展 还有其他推荐的网站/app，有兴趣的可以试试
+https://www.chinaz.com/2022/0825/1437982.shtml]]></description>
+</item>
+<item>
+    <title>Go的MPG模型</title>
+    <link>https://Ellioben.github.io/go%E7%9A%84mpg%E6%A8%A1%E5%9E%8B/</link>
+    <pubDate>Fri, 21 Oct 2022 08:38:28 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/go%E7%9A%84mpg%E6%A8%A1%E5%9E%8B/</guid>
+    <description><![CDATA[在操作系统提供的内核线程之上，Go搭建了一个特有的两级线程模型。goroutine机制实现了M:N的线程模型，goroutine机制是协程（coroutine）的一种实现，golang内置的调度器，可以让多核CPU中每个CPU执行一个协程。
+调度器是如何工作的 有了上面的认识，可以开始真正的介绍Go的并发机制了，先用一段代码展示一下在Go语言中新建一个“线程“（Go语言中称为Goroutine）的样子：
+1 2 3 4 5 //1用go关键字加上一个函数（这里用了匿名函数） //调用就做到了在一个新的“线程”并发执行任务 go func() { }() 理解goroutine机制的原理，关键是理解Go语言scheduler的实现。
+Go语言中支撑整个scheduler实现的主要有4个重要结构，分别是M、P、G、Sched，前三个定义在runtime.h中，Sched定义在proc.c中。]]></description>
+</item>
+<item>
+    <title>Closure</title>
+    <link>https://Ellioben.github.io/closure%E9%97%AD%E5%8C%85/</link>
+    <pubDate>Fri, 21 Oct 2022 08:37:23 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/closure%E9%97%AD%E5%8C%85/</guid>
+    <description><![CDATA[闭包 闭包就是一个函数和与其相关的引用环境组合的一个整体
+闭包就是返回的匿名函数+匿名函数以外的变量sum
+感受：匿名函数中引用的那个变量会一直保存在内存中，可以一直使用
+函数在创建的时候会创建两个对象，一个是函数对象本身，另一个是作用域链对象 函数在调用的时候会创建一个执行环境对象（活动对象）
+返回值是内存函数（实际是内层函数地址） 内层函数涉及到方法中的i 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 import &#34;fmt&#34; func main() { f := getSum() fmt.Println(getSum()) fmt.Println(f(100)) fmt.Println(f(2)) fmt.Println(f(3)) } func getSum() func(int) int { var sum = 0 return func(num int) int { sum = num+sum return sum } } //===-== 0x49aa70 100 102 105 注意 1、中使用的变量/参数会一直保存在内存中，所以会一直使用&mdash;&gt;意味着闭包不可滥用]]></description>
+</item>
+<item>
+    <title>mac/linux好用的工具</title>
+    <link>https://Ellioben.github.io/mactool/</link>
+    <pubDate>Sun, 09 Oct 2022 18:48:36 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/mactool/</guid>
+    <description><![CDATA[mac/linux好用的工具
+crontab 1、Linux和Mac下操作crontab都是一致的
+2、配置文件都在/etc/crontab下，如果没有就创建。
+3、crontab参数
+crontab [-u user] file crontab [-u user] [ -e | -l | -r ]
+-u user：用来设定某个用户的crontab服务； file：file是命令文件的名字,表示将file做为crontab的任务列表文件并载入crontab。如果在命令行中没有指定这个文件，crontab命令将接受标准输入（键盘）上键入的命令，并将它们载入crontab。 -e：编辑某个用户的crontab文件内容。如果不指定用户，则表示编辑当前用户的crontab文件。 -l：显示某个用户的crontab文件内容，如果不指定用户，则表示显示当前用户的crontab文件内容。 -r：从/var/spool/cron目录中删除某个用户的crontab文件，如果不指定用户，则默认删除当前用户的crontab文件。 -i：在删除用户的crontab文件时给确认提示。 4、配置环境变量，打开open ~/.bash_profile文件添加以下内容;
+EDITOR=vim crontab -e；export EDITOR
+5、crontab的文件格式
+1 eg：* * * * * sh /xxxxx/davecron.sh &gt;&gt;/xxxxx/davecron.log 查看当前的cron job 1 2 sudo crontab -l 35 22 * * * /Users/xxx/shell/openSafari.sh 添加cron job 1 2 3 4 5 6 7 8 9 10 11 sudo crontab -e 35 22 * * * /Users/xxx/shell/openSafari.]]></description>
+</item>
+<item>
+    <title>SmartContract</title>
+    <link>https://Ellioben.github.io/smartcontract/</link>
+    <pubDate>Fri, 07 Oct 2022 18:08:36 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/smartcontract/</guid>
+    <description><![CDATA[SmartContract
+中文名称智能合约
+了解智能合约签，现需要了解以太坊。
+以太坊中重要概念 账户(Account)
+包含地址，余额和随机数，以及可选的存储和代码的对象。
+普通账户(EOA) ，存储和代码均为空
+合约账户(Contract)，包含存储和代码
+地址(Address)
+般来说，这代表一个EOA或合约，它可以在区块链上接收或发送交易。更具体地说，它是ECDSA公钥的keccak散列的最右边的160位。
+交易(Transaction)
+可以发送以太币和信息
+向合约发送的交易可以调用合约代码，并以信息数据为函数参数
+向空用户发送信息，可以自动生成以信息为代码块的合约账户
+gas
+以太坊用于执行智能合约的虚拟燃料。以太坊虚拟机使用核算机制来衡量 gas的消耗量并限制计算资源的消耗。
+以太坊特点 以太坊是“世界计算机”，这代表它是一个开源的、全球分布的计算基础设施
+执行称为智能合约(smart contract)的程序
+使用区块链来同步和存储系统状态以及名为以太币(ether)的加密货币，以计量和约束执行资源成本
+本质是一个基于交易的状态机(transaction-based state machine)
+以太坊平台使开发人员能够构建具有内置经济功能的强大去中心化应用程序(DApp)；在持续自我正常运行的同时，它还减少或消除了审查，第三方界面和交易对手风险
+名词解释 ERC: Ethereum Request for Comments的缩写,以太坊征求意见.些EIP被标记为ERC，表示试图定义以太坊使用的特定标准的提议
+EOA： External Owned Accoupt，外部账户。由以太坊网络的人类用户创建的账户
+Keccak256：以太坊中使用的密码哈希函数。Keccak256被标准化为 SHA-3
+Nonce：在密码学中，术语nonce用于指代只能使用一次的值。以太坊使用两种类型的随机数，账户随机数和POW随机数
+Smart Contract etherscan.io可以看到现在主网络上的合约交易记录。
+Remix 合约开发工具Remix（基于浏览器的Solidity在线编辑器）
+合约都是solidity编写的，有必要学习一下solidity语法。
+VS code 下载Remix插件
+http://remix.ethereum.org/ 在线
+docker启动
+1 docker run -p 10330:80 remixproject/remix-ide:latest 其他合约开发工具 MetaMask - 浏览器插件钱包
+Geth - 以太坊客户端(go语言)
+web3.js - 以太坊 javascipt API库]]></description>
+</item>
+<item>
+    <title>Blockchain</title>
+    <link>https://Ellioben.github.io/blockchain/</link>
+    <pubDate>Thu, 22 Sep 2022 23:59:45 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/blockchain/</guid>
+    <description><![CDATA[区块链上的东西本来就是概念上的东西偏多，这偏都是一些概念类比性的东西，有兴趣可以看看。待更新&hellip;
+区块链 区块链是什么？
+(1)数据角度：一种几乎不可能被更改的分布式数据库。
+“分布式”特点：
+1、数据的分布式存储：存储在所有参与记录数据的节点中， 并非集中存储在中心化的机构节点中。
+2、数据的分布式记录：系统参与者共同维护。去中心化数据库
+三、区块链技术涉及关键点
+(1)去中心化
+(2)去信任
+(3)集体维护
+(4)可靠数据库
+(5)时间截
+(6)非对称加密
+区块链概述 区块链定义： 区块链 是一个共享的、不可篡改的账本，旨在促进业务网络中的交易记录和资产跟踪流程。 资 产 可以是有形的（如房屋、汽车、现金、土地），也可以是无形的（如知识产权、专利、版权、品牌）。 几乎任何有价值的东西都可以在区块链网络上进行跟踪和交易，从而降低各方面的风险和成本。
+**为什么说区块链很重要：**业务运行依靠信息。 信息接收速度越快，内容越准确，越有利于业务运营。 区块链是用于传递这些信息的理想之选，因为它可提供即时、共享和完全透明的信息，这些信息存储在不可篡改的账本上，只能由获得许可的网络成员访问。 区块链网络可跟踪订单、付款、帐户、生产等信息。 由于成员之间共享单一可信视图，因此，您可以端到端地查看交易的所有细节，从而赋予您更大的信心和机会，并提高效率
+区块链的关键元素 分布式账本技术 所有网络参与者都有权访问分布式账本及其不可篡改的交易记录。 使用此共享账本，交易仅需记录一次，从而消除了传统业务网络中典型的重复工作。
+不可篡改的记录 在交易被记录到共享账本之后，任何参与者都不可以更改或篡改交易。 如果交易记录中 有 错误，则必须添加新交易才能撤消该错误，这两个交易随后都是可视的。
+智能合同 为了加快交易速度，区块链上存储了一系列自动执行的规则，称为 &ldquo;智能合约&rdquo; 。 智能合约可以定义公司债券转让的条件，包括要支付的旅行保险条款等等。
+区块链的运作方式 每个交易发生时，都会被记录为一个数据&quot;块&quot; 这些交易表明资产的流动，资产可以是有形的（如产品），也可以是无形的（如知识产权）。 数据块可以记录您的首选信息项：谁、什么、何时、何地、多少甚至条件 — 例如食品运输温度。
+每个块都连接到位于它前后的块 随着资产位置的改变或所有权的变更，这些数据块形成了数据链。 数据块可以确认交易的确切时间和顺序，通过将数据块安全地链接在一起，可以防止任何数据块被篡改或在两个现有数据块之间插入其他数据块。
+交易被封闭在不可逆的链中：区块链 每添加一个数据块都会加强前一个块的验证，从而增强整条区块链。 这使得区块链能够防止篡改，提供不可更改的关键优势。 这不但消除了恶意人员进行篡改的可能性，而且还建立了您和其他网络成员可以信任的交易账本。
+区块链的优点 **需要变更的地方：**运营人员经常在重复保存记录和第三方验证上浪费精力。 记录保存系统容易受到欺诈和网络攻击的影响。 有限的透明度会减慢数据验证速度。 随着物联网的到来，交易量激增。 所有这些问题都会影响开展业务的速度和最终的盈利，因此我们需要更好的方法。 进入区块链。
+更高的信任度 使用区块链，作为会员制网络中的一员，您可以确信自己收到的数据是准确的、及时的，并且您的机密区块链记录只能与您特别授予访问权限的网络成员共享。
+更出色的安全性 所有的网络成员都需要就数据准确性达成共识，并且所有经过验证的交易都将永久记录在案，不可篡改。 没有人可以删除交易，即使是系统管理员也不例外。
+更高的效率 通过在网络成员之间共享分布式账本，您可以避免在记录对账上浪费时间。 为了加快交易速度，区块链上存储了一系列自动执行的规则，称为&quot;智能合约&quot;。]]></description>
+</item>
+<item>
+    <title>K8S</title>
+    <link>https://Ellioben.github.io/k8s/</link>
+    <pubDate>Thu, 22 Sep 2022 23:58:22 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/k8s/</guid>
+    <description><![CDATA[待更新&hellip;&hellip;
+全名Kubernetes（虚拟容器批量管理工具之一） 学习文档 https://kubernetes.io/zh-cn/docs/tasks/tools/
+Kubernetes 作为一个容器集群管理系统，用于管理云平台中多个主机上的容器应用，Kubernetes 的目标是让部署容器化的应用变得简单且高效，所以 Kubernetes 提供了应用部署，规划，更新，维护的一整套完整的机制。
+比起k8s是构建容器编排工具来说，在我看来k8s更像是一个虚拟服务容器级别的生态圈。在这个生态圈里、孵化出很多的东西（学起来没有底的)
+k8s服务架构
+Master node k8s集群控制节点，对集群迸行调度管理，接受集群外用户去集群操作请求; Master node由 API Server、 Scheduler、 Cluster state store（ETCD数据库）和 Controller Manger Server所组成; Worker node 集群工作节点，运行用户业务应用容器; Worker Node包含 kubelet、 kube proxy和 Container Runtime; 准备 k8s是基于docker的。要先安装docker
+Kubeadm 有多台vm推荐kubeadm安装k8s环境
+minikube 没有vm推荐使用minikube
+安装minikube（在docker跑了个ubantu跑了个minikube的节点）
+1 2 3 brew install minikube #启动 minikube start https://k8s.easydoc.net/docs/dRiQjyTY/28366845/6GiNOzyZ/9EX8Cp45
+主节点需要组件 docker（也可以是其他容器运行时） kubectl 集群命令行交互工具 工具 自己本地测试需要安装的工具
+minikube kubectl k9s好用的dashboard（可选） 1 2 3 4 5 brew install kubectl or brew install kubernetes-cli #测试一下，确保你安装的是最新的版本： kubectl version --client 常用的指令 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 #创建namespase kubectl create ns test # apply 创建一个k8s组建 kubectl apply -n test -f xxxx.]]></description>
+</item>
+<item>
+    <title>Gitlog</title>
+    <link>https://Ellioben.github.io/gitlog/</link>
+    <pubDate>Sat, 10 Sep 2022 19:47:36 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/gitlog/</guid>
+    <description><![CDATA[Git Changelog 原理/思路其实很简单，通过git log指令生成的日志。筛选出提交记录，提交时间。
+把这些内容提取出来，按照md格式写入发布文件中（changelog中）
+具体的筛选操作需要借助 format指令取操作。
+gitlog Format 默认git log 出来的格式并不是特别直观，很多时候想要更简便的输出更多或者更少的信息，这里列出几个git log的format。可以根据自己的需要定制。
+git log命令可一接受一个&ndash;pretty选项，来确定输出的格式.
+比如 ：
+如果我们只想输出hash.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 git log --pretty=format:&#34;%h&#34; #也可以直接使用format #e.g. git log --format=%B%aD Sat, 10 Sep 2022 16:03:16 +0800 修改文章排序 Sat, 10 Sep 2022 02:23:41 +0800 修改aidraw图片 Sat, 10 Sep 2022 01:08:54 +0800 修改aidraw Sat, 10 Sep 2022 00:43:50 +0800 添加作者链接 详细 命令 ：]]></description>
+</item>
+<item>
+    <title>Linux</title>
+    <link>https://Ellioben.github.io/linux/</link>
+    <pubDate>Wed, 10 Aug 2022 01:27:29 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/linux/</guid>
+    <description><![CDATA[开发常用 持续更新&hellip;
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 ls cd pwd echo mv rm x.txt rm x.txt foo.txt rm -r cp -r dir1 dir2 scp -r mkdir -p df man man pwd man -h ls -h man --help #查看文件内容 cat (Concatenate and print Files) cat a.]]></description>
+</item>
+<item>
+    <title>Mycat</title>
+    <link>https://Ellioben.github.io/mycat/</link>
+    <pubDate>Sat, 09 Jul 2022 17:23:14 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/mycat/</guid>
+    <description><![CDATA[待更新 ]]></description>
+</item>
+</channel>
+</rss>

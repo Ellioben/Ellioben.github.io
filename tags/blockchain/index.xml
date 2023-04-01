@@ -1,0 +1,80 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>blockchain - Tag - Yongbo&#39;s Blog</title>
+        <link>https://Ellioben.github.io/tags/blockchain/</link>
+        <description>blockchain - Tag - Yongbo&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>xieyongbo@tom.com (XieYongbo/Ellioben)</managingEditor>
+            <webMaster>xieyongbo@tom.com (XieYongbo/Ellioben)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 07 Oct 2022 18:08:36 &#43;0800</lastBuildDate><atom:link href="https://Ellioben.github.io/tags/blockchain/" rel="self" type="application/rss+xml" /><item>
+    <title>SmartContract</title>
+    <link>https://Ellioben.github.io/smartcontract/</link>
+    <pubDate>Fri, 07 Oct 2022 18:08:36 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/smartcontract/</guid>
+    <description><![CDATA[SmartContract
+中文名称智能合约
+了解智能合约签，现需要了解以太坊。
+以太坊中重要概念 账户(Account)
+包含地址，余额和随机数，以及可选的存储和代码的对象。
+普通账户(EOA) ，存储和代码均为空
+合约账户(Contract)，包含存储和代码
+地址(Address)
+般来说，这代表一个EOA或合约，它可以在区块链上接收或发送交易。更具体地说，它是ECDSA公钥的keccak散列的最右边的160位。
+交易(Transaction)
+可以发送以太币和信息
+向合约发送的交易可以调用合约代码，并以信息数据为函数参数
+向空用户发送信息，可以自动生成以信息为代码块的合约账户
+gas
+以太坊用于执行智能合约的虚拟燃料。以太坊虚拟机使用核算机制来衡量 gas的消耗量并限制计算资源的消耗。
+以太坊特点 以太坊是“世界计算机”，这代表它是一个开源的、全球分布的计算基础设施
+执行称为智能合约(smart contract)的程序
+使用区块链来同步和存储系统状态以及名为以太币(ether)的加密货币，以计量和约束执行资源成本
+本质是一个基于交易的状态机(transaction-based state machine)
+以太坊平台使开发人员能够构建具有内置经济功能的强大去中心化应用程序(DApp)；在持续自我正常运行的同时，它还减少或消除了审查，第三方界面和交易对手风险
+名词解释 ERC: Ethereum Request for Comments的缩写,以太坊征求意见.些EIP被标记为ERC，表示试图定义以太坊使用的特定标准的提议
+EOA： External Owned Accoupt，外部账户。由以太坊网络的人类用户创建的账户
+Keccak256：以太坊中使用的密码哈希函数。Keccak256被标准化为 SHA-3
+Nonce：在密码学中，术语nonce用于指代只能使用一次的值。以太坊使用两种类型的随机数，账户随机数和POW随机数
+Smart Contract etherscan.io可以看到现在主网络上的合约交易记录。
+Remix 合约开发工具Remix（基于浏览器的Solidity在线编辑器）
+合约都是solidity编写的，有必要学习一下solidity语法。
+VS code 下载Remix插件
+http://remix.ethereum.org/ 在线
+docker启动
+1 docker run -p 10330:80 remixproject/remix-ide:latest 其他合约开发工具 MetaMask - 浏览器插件钱包
+Geth - 以太坊客户端(go语言)
+web3.js - 以太坊 javascipt API库]]></description>
+</item>
+<item>
+    <title>Blockchain</title>
+    <link>https://Ellioben.github.io/blockchain/</link>
+    <pubDate>Thu, 22 Sep 2022 23:59:45 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://Ellioben.github.io/blockchain/</guid>
+    <description><![CDATA[区块链上的东西本来就是概念上的东西偏多，这偏都是一些概念类比性的东西，有兴趣可以看看。待更新&hellip;
+区块链 区块链是什么？
+(1)数据角度：一种几乎不可能被更改的分布式数据库。
+“分布式”特点：
+1、数据的分布式存储：存储在所有参与记录数据的节点中， 并非集中存储在中心化的机构节点中。
+2、数据的分布式记录：系统参与者共同维护。去中心化数据库
+三、区块链技术涉及关键点
+(1)去中心化
+(2)去信任
+(3)集体维护
+(4)可靠数据库
+(5)时间截
+(6)非对称加密
+区块链概述 区块链定义： 区块链 是一个共享的、不可篡改的账本，旨在促进业务网络中的交易记录和资产跟踪流程。 资 产 可以是有形的（如房屋、汽车、现金、土地），也可以是无形的（如知识产权、专利、版权、品牌）。 几乎任何有价值的东西都可以在区块链网络上进行跟踪和交易，从而降低各方面的风险和成本。
+**为什么说区块链很重要：**业务运行依靠信息。 信息接收速度越快，内容越准确，越有利于业务运营。 区块链是用于传递这些信息的理想之选，因为它可提供即时、共享和完全透明的信息，这些信息存储在不可篡改的账本上，只能由获得许可的网络成员访问。 区块链网络可跟踪订单、付款、帐户、生产等信息。 由于成员之间共享单一可信视图，因此，您可以端到端地查看交易的所有细节，从而赋予您更大的信心和机会，并提高效率
+区块链的关键元素 分布式账本技术 所有网络参与者都有权访问分布式账本及其不可篡改的交易记录。 使用此共享账本，交易仅需记录一次，从而消除了传统业务网络中典型的重复工作。
+不可篡改的记录 在交易被记录到共享账本之后，任何参与者都不可以更改或篡改交易。 如果交易记录中 有 错误，则必须添加新交易才能撤消该错误，这两个交易随后都是可视的。
+智能合同 为了加快交易速度，区块链上存储了一系列自动执行的规则，称为 &ldquo;智能合约&rdquo; 。 智能合约可以定义公司债券转让的条件，包括要支付的旅行保险条款等等。
+区块链的运作方式 每个交易发生时，都会被记录为一个数据&quot;块&quot; 这些交易表明资产的流动，资产可以是有形的（如产品），也可以是无形的（如知识产权）。 数据块可以记录您的首选信息项：谁、什么、何时、何地、多少甚至条件 — 例如食品运输温度。
+每个块都连接到位于它前后的块 随着资产位置的改变或所有权的变更，这些数据块形成了数据链。 数据块可以确认交易的确切时间和顺序，通过将数据块安全地链接在一起，可以防止任何数据块被篡改或在两个现有数据块之间插入其他数据块。
+交易被封闭在不可逆的链中：区块链 每添加一个数据块都会加强前一个块的验证，从而增强整条区块链。 这使得区块链能够防止篡改，提供不可更改的关键优势。 这不但消除了恶意人员进行篡改的可能性，而且还建立了您和其他网络成员可以信任的交易账本。
+区块链的优点 **需要变更的地方：**运营人员经常在重复保存记录和第三方验证上浪费精力。 记录保存系统容易受到欺诈和网络攻击的影响。 有限的透明度会减慢数据验证速度。 随着物联网的到来，交易量激增。 所有这些问题都会影响开展业务的速度和最终的盈利，因此我们需要更好的方法。 进入区块链。
+更高的信任度 使用区块链，作为会员制网络中的一员，您可以确信自己收到的数据是准确的、及时的，并且您的机密区块链记录只能与您特别授予访问权限的网络成员共享。
+更出色的安全性 所有的网络成员都需要就数据准确性达成共识，并且所有经过验证的交易都将永久记录在案，不可篡改。 没有人可以删除交易，即使是系统管理员也不例外。
+更高的效率 通过在网络成员之间共享分布式账本，您可以避免在记录对账上浪费时间。 为了加快交易速度，区块链上存储了一系列自动执行的规则，称为&quot;智能合约&quot;。]]></description>
+</item>
+</channel>
+</rss>
