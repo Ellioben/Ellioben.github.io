@@ -30,7 +30,13 @@ java,go,shell,python,js,vue,web3,html,css...
 - 前端 JavaScript、JQuery、vue；echarts，element-ui，bootstrap 等等前端框架。
 - linux，容器化docker，k8s，shell。
 
+## 🔸 AI：
+
+> 待更新。。。
+
+
 ## 🔸 技术框架：
+
 
 - spring，springboot，nacos，springmvc，springcloud/dubbo+zookeeper，mybatisplus。
 - go 多线程方面使用，GPM，开发有关的框架gin/gorm/hertz/wire等等做架构使用,或者有趣的项目，比如chaos实验，operator等等（go 框架使用偏向于 github 上查文档学习和使用）有空也会记录上。
@@ -59,6 +65,7 @@ Grafana，Matedata 等数据可视化的一些操作。
 - 区块链的共识机制，solidity 语法， Remix 部署合约并通过自己私有网络实现钱包和合约之间交易。 
 - web3 与合约之间的 ABI 调用，matemask 与区块链网络之间的交互。
 - 对区块链有关的比较感兴趣，关注各种与区块链有关的资讯，中心化、去中心化交易所，opensea+IPFS，链游...
+
 
 
 
