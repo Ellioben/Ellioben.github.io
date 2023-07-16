@@ -60,4 +60,13 @@ sudo crontab -e
 
 ```
 
+## jq
+> json文件解析工具
 
+
+
+## typora
+> md文件“所见即所得”
+
+ 当然也有一些不足
+ so make your typora perfect--->>https://github.com/Ellioben/assisfortypora
