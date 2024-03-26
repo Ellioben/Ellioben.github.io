@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>database - Tag - Yongbo&#39;s Blog</title>
+        <title>Database - Tag - Yongbo&#39;s Blog</title>
         <link>https://Ellioben.github.io/tags/database/</link>
-        <description>database - Tag - Yongbo&#39;s Blog</description>
+        <description>Database - Tag - Yongbo&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>xieyongbo@tom.com (XieYongbo/Ellioben)</managingEditor>
             <webMaster>xieyongbo@tom.com (XieYongbo/Ellioben)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 09 Jul 2022 17:23:14 &#43;0800</lastBuildDate><atom:link href="https://Ellioben.github.io/tags/database/" rel="self" type="application/rss+xml" /><item>
     <title>Mycat</title>

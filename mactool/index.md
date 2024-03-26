@@ -74,3 +74,4 @@ sudo crontab -e
 
 ## OrbStack
 > 谁下谁知道，非常好用的docker，虚拟机客户端
+秒级启动

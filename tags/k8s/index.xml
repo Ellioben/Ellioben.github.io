@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>k8s - Tag - Yongbo&#39;s Blog</title>
+        <title>K8s - Tag - Yongbo&#39;s Blog</title>
         <link>https://Ellioben.github.io/tags/k8s/</link>
-        <description>k8s - Tag - Yongbo&#39;s Blog</description>
+        <description>K8s - Tag - Yongbo&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>xieyongbo@tom.com (XieYongbo/Ellioben)</managingEditor>
             <webMaster>xieyongbo@tom.com (XieYongbo/Ellioben)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 22 Sep 2022 23:58:22 &#43;0800</lastBuildDate><atom:link href="https://Ellioben.github.io/tags/k8s/" rel="self" type="application/rss+xml" /><item>
     <title>K8S</title>

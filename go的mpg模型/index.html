@@ -7,14 +7,11 @@
         <title>Go的MPG模型 - Yongbo&#39;s Blog</title><meta name="Description" content="desc"><meta property="og:title" content="Go的MPG模型" />
 <meta property="og:description" content="desc" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://Ellioben.github.io/go%E7%9A%84mpg%E6%A8%A1%E5%9E%8B/" /><meta property="og:image" content="https://Ellioben.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://Ellioben.github.io/go%E7%9A%84mpg%E6%A8%A1%E5%9E%8B/" /><meta property="og:image" content="https://Ellioben.github.io/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-10-21T08:38:28+08:00" />
 <meta property="article:modified_time" content="2022-10-21T08:38:28+08:00" /><meta property="og:site_name" content="Yongbo&#39; Blog" />
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://Ellioben.github.io/logo.png"/>
-
-<meta name="twitter:title" content="Go的MPG模型"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://Ellioben.github.io/logo.png" /><meta name="twitter:title" content="Go的MPG模型"/>
 <meta name="twitter:description" content="desc"/>
 <meta name="application-name" content="Yongbo&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yongbo&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/avatar.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://Ellioben.github.io/go%E7%9A%84mpg%E6%A8%A1%E5%9E%8B/" /><link rel="prev" href="https://Ellioben.github.io/closure%E9%97%AD%E5%8C%85/" /><link rel="next" href="https://Ellioben.github.io/aidraw/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -33,7 +30,7 @@
                             "url": "https:\/\/Ellioben.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "go, 并发","wordcount":  16 ,
+                        }],"genre": "posts","keywords": "go, 并发","wordcount":  25 ,
         "url": "https:\/\/Ellioben.github.io\/go%E7%9A%84mpg%E6%A8%A1%E5%9E%8B\/","datePublished": "2022-10-21T08:38:28+08:00","dateModified": "2022-10-21T08:38:28+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -114,7 +111,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Go的MPG模型</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>XieYongbo/Ellioben</a></span>&nbsp;<span class="post-category">included in <a href="/categories/develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Develop</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-10-21">2022-10-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;16 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-10-21">2022-10-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;25 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/go%E7%9A%84mpg%E6%A8%A1%E5%9E%8B/" class="leancloud_visitors" data-flag-title="Go的MPG模型">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -153,6 +150,26 @@
 </div>
 </div><p>理解goroutine机制的原理，关键是理解Go语言<code>scheduler</code>的实现。</p>
 <p>Go语言中支撑整个scheduler实现的主要有4个重要结构，分别是<u>M、P、G</u>、Sched，前三个定义在runtime.h中，Sched定义在proc.c中。</p>
+<blockquote>
+<p>MPG：都是go语言运行时系统抽象出来的概念和数据结构的对象，包括内存分配器，并发调度器，垃圾收集器等等（可以理解为Java的jvm）</p>
+</blockquote>
+<ul>
+<li>
+<p>M结构是Machine，系统线程，它由操作系统管理的，goroutine就是跑在M之上的；M是一个很大的结构，里面维护小对象内存cache（ncache）、当前执行的goroutine、随机数发生器等等非常多的信息。</p>
+<p>M是Machine的缩写 ，利用系统调用创建的操作系统线程实体，作用是执行G当中包装的并发任务，<u><font color='#44A58C' style="font-weight:bold">可以理解为一个M代表一个内核线程，它是由操作系统来管理的。goroutine就跑在M上面的。</font></u></p>
+</li>
+<li>
+<p>G是goroutine实现的核心结构，它包含了栈，指令指针，以及其他对调度goroutine很重要的信息，例如其阻塞的channel。</p>
+<p>G是goroutine的缩写，go关键字+函数就可以创建G的对象，是对一个并发任务的封装，可以认为是用户态的线程，属于用户资源，对操作系统是透明的，属于轻量级资源。可以大量创建，上下文切换成本比较低</p>
+</li>
+<li>
+<p>P结构是Processor，（逻辑）处理器，它的主要用途就是用来执行goroutine的，它维护了一个<code>goroutine队列，即runqueue</code>。Processor是让我们从N:1调度到M:N调度的重要部分。</p>
+<p>P是Processor的缩写，主要是管理G对象，并且<u><font color='#44A58C' style="font-weight:bold">为G在M上运行提供一些本地化的资源，主要用途就是用来执行goroutine的</font>font&gt;</u>。P可以理解为执行一个go代码片段所必需的资源，所以有一些资料会叫上下文环境。<em>Processor的数量是在启动时被设置为环境变量GOMAXPROCS的值，或者通过运行时调用函数GOMAXPROCS0进行设置。Processor数量固定意味着任意时刻只有GOMAXPROCS个线程在运行go代码</em>.</p>
+</li>
+<li>
+<p>Sched:结构就是调度器，它维护有存储M和G的队列以及调度器的一些状态信息等等。</p>
+</li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -170,7 +187,7 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">go</a>,&nbsp;<a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">Go</a>,&nbsp;<a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
@@ -183,7 +200,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">XieYongbo/Ellioben</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">XieYongbo/Ellioben</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

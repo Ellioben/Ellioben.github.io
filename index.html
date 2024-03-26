@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<meta name="generator" content="Hugo 0.101.0" />
+	<meta name="generator" content="Hugo 0.124.1">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>Yongbo&#39;s Blog</title><meta name="Description" content="xxx"><meta property="og:title" content="Yongbo&#39;s Blog" />
 <meta property="og:description" content="xxx" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://Ellioben.github.io/" /><meta property="og:image" content="https://Ellioben.github.io/logo.png"/><meta property="og:site_name" content="Yongbo&#39; Blog" />
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://Ellioben.github.io/logo.png"/>
-
-<meta name="twitter:title" content="Yongbo&#39;s Blog"/>
+<meta property="og:url" content="https://Ellioben.github.io/" /><meta property="og:image" content="https://Ellioben.github.io/logo.png" /><meta property="og:site_name" content="Yongbo&#39; Blog" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://Ellioben.github.io/logo.png" /><meta name="twitter:title" content="Yongbo&#39;s Blog"/>
 <meta name="twitter:description" content="xxx"/>
 <meta name="application-name" content="Yongbo&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="Yongbo&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/avatar.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://Ellioben.github.io/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Yongbo&#39;s Blog">
@@ -117,15 +114,23 @@ colab
 扩展 还有其他推荐的网站/app，有兴趣的可以试试
 https://www.chinaz.com/2022/0825/1437982.shtml</div><div class="post-footer">
         <a href="/aidraw/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/design/">design</a>,&nbsp;<a href="/tags/ai/">AI</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/design/">Design</a>,&nbsp;<a href="/tags/ai/">AI</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/go%E7%9A%84mpg%E6%A8%A1%E5%9E%8B/">Go的MPG模型</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>XieYongbo/Ellioben</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-10-21">2022-10-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Develop</a></span></div><div class="content">在操作系统提供的内核线程之上，Go搭建了一个特有的两级线程模型。goroutine机制实现了M:N的线程模型，goroutine机制是协程（coroutine）的一种实现，golang内置的调度器，可以让多核CPU中每个CPU执行一个协程。
 调度器是如何工作的 有了上面的认识，可以开始真正的介绍Go的并发机制了，先用一段代码展示一下在Go语言中新建一个“线程“（Go语言中称为Goroutine）的样子：
 1 2 3 4 5 //1用go关键字加上一个函数（这里用了匿名函数） //调用就做到了在一个新的“线程”并发执行任务 go func() { }() 理解goroutine机制的原理，关键是理解Go语言scheduler的实现。
-Go语言中支撑整个scheduler实现的主要有4个重要结构，分别是M、P、G、Sched，前三个定义在runtime.h中，Sched定义在proc.c中。</div><div class="post-footer">
+Go语言中支撑整个scheduler实现的主要有4个重要结构，分别是M、P、G、Sched，前三个定义在runtime.h中，Sched定义在proc.c中。
+MPG：都是go语言运行时系统抽象出来的概念和数据结构的对象，包括内存分配器，并发调度器，垃圾收集器等等（可以理解为Java的jvm）
+M结构是Machine，系统线程，它由操作系统管理的，goroutine就是跑在M之上的；M是一个很大的结构，里面维护小对象内存cache（ncache）、当前执行的goroutine、随机数发生器等等非常多的信息。
+M是Machine的缩写 ，利用系统调用创建的操作系统线程实体，作用是执行G当中包装的并发任务，可以理解为一个M代表一个内核线程，它是由操作系统来管理的。goroutine就跑在M上面的。
+G是goroutine实现的核心结构，它包含了栈，指令指针，以及其他对调度goroutine很重要的信息，例如其阻塞的channel。
+G是goroutine的缩写，go关键字+函数就可以创建G的对象，是对一个并发任务的封装，可以认为是用户态的线程，属于用户资源，对操作系统是透明的，属于轻量级资源。可以大量创建，上下文切换成本比较低
+P结构是Processor，（逻辑）处理器，它的主要用途就是用来执行goroutine的，它维护了一个goroutine队列，即runqueue。Processor是让我们从N:1调度到M:N调度的重要部分。
+P是Processor的缩写，主要是管理G对象，并且为G在M上运行提供一些本地化的资源，主要用途就是用来执行goroutine的font&gt;。P可以理解为执行一个go代码片段所必需的资源，所以有一些资料会叫上下文环境。Processor的数量是在启动时被设置为环境变量GOMAXPROCS的值，或者通过运行时调用函数GOMAXPROCS0进行设置。Processor数量固定意味着任意时刻只有GOMAXPROCS个线程在运行go代码.
+Sched:结构就是调度器，它维护有存储M和G的队列以及调度器的一些状态信息等等。</div><div class="post-footer">
         <a href="/go%E7%9A%84mpg%E6%A8%A1%E5%9E%8B/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">go</a>,&nbsp;<a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">Go</a>,&nbsp;<a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/closure%E9%97%AD%E5%8C%85/">Closure</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>XieYongbo/Ellioben</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-10-21">2022-10-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Develop</a></span></div><div class="content">闭包 闭包就是一个函数和与其相关的引用环境组合的一个整体
@@ -134,7 +139,7 @@ Go语言中支撑整个scheduler实现的主要有4个重要结构，分别是M�
 函数在创建的时候会创建两个对象，一个是函数对象本身，另一个是作用域链对象 函数在调用的时候会创建一个执行环境对象（活动对象）
 返回值是内存函数（实际是内层函数地址） 内层函数涉及到方法中的i 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 import &#34;fmt&#34; func main() { f := getSum() fmt.Println(getSum()) fmt.Println(f(100)) fmt.Println(f(2)) fmt.Println(f(3)) } func getSum() func(int) int { var sum = 0 return func(num int) int { sum = num+sum return sum } } //===-== 0x49aa70 100 102 105 注意 1、中使用的变量/参数会一直保存在内存中，所以会一直使用&mdash;&gt;意味着闭包不可滥用</div><div class="post-footer">
         <a href="/closure%E9%97%AD%E5%8C%85/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/xxx/">xxx</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/xxx/">Xxx</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/mactool/">mac/linux好用的工具</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>XieYongbo/Ellioben</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-10-09">2022-10-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/mac/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Mac/Linux</a>&nbsp;<a href="/categories/tools/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Tools</a></span></div><div class="content">mac/linux好用的工具
@@ -147,7 +152,7 @@ EDITOR=vim crontab -e；export EDITOR
 5、crontab的文件格式
 1 eg：* * * * * sh /xxxxx/davecron.sh &gt;&gt;/xxxxx/davecron.log 查看当前的cron job 1 2 sudo crontab -l 35 22 * * * /Users/xxx/shell/openSafari.sh 添加cron job 1 2 3 4 5 6 7 8 9 10 11 sudo crontab -e 35 22 * * * /Users/xxx/shell/openSafari.</div><div class="post-footer">
         <a href="/mactool/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/mac/">mac</a>,&nbsp;<a href="/tags/tools/">tools</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/mac/">Mac</a>,&nbsp;<a href="/tags/tools/">Tools</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/smartcontract/">SmartContract</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Eloben</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-10-07">2022-10-07</time></span>&nbsp;<span class="post-category">included in <a href="/categories/develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Develop</a></span></div><div class="content">SmartContract
@@ -184,7 +189,7 @@ docker启动
 Geth - 以太坊客户端(go语言)
 web3.js - 以太坊 javascipt API库</div><div class="post-footer">
         <a href="/smartcontract/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/smartcontract/">smartcontract</a>,&nbsp;<a href="/tags/blockchain/">blockchain</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/smartcontract/">Smartcontract</a>,&nbsp;<a href="/tags/blockchain/">Blockchain</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/blockchain/">Blockchain</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>XieYongbo/Ellioben</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-09-22">2022-09-22</time></span>&nbsp;<span class="post-category">included in <a href="/categories/develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Develop</a></span></div><div class="content">区块链上的东西本来就是概念上的东西偏多，这偏都是一些概念类比性的东西，有兴趣可以看看。待更新&hellip;
@@ -213,86 +218,18 @@ web3.js - 以太坊 javascipt API库</div><div class="post-footer">
 更出色的安全性 所有的网络成员都需要就数据准确性达成共识，并且所有经过验证的交易都将永久记录在案，不可篡改。 没有人可以删除交易，即使是系统管理员也不例外。
 更高的效率 通过在网络成员之间共享分布式账本，您可以避免在记录对账上浪费时间。 为了加快交易速度，区块链上存储了一系列自动执行的规则，称为&quot;智能合约&quot;。</div><div class="post-footer">
         <a href="/blockchain/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/blockchain/">blockchain</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/k8s/">K8S</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>XieYongbo/Ellioben</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-09-22">2022-09-22</time></span>&nbsp;<span class="post-category">included in <a href="/categories/develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Develop</a></span></div><div class="content">待更新&hellip;&hellip;
-全名Kubernetes（虚拟容器批量管理工具之一） 学习文档 https://kubernetes.io/zh-cn/docs/tasks/tools/
-Kubernetes 作为一个容器集群管理系统，用于管理云平台中多个主机上的容器应用，Kubernetes 的目标是让部署容器化的应用变得简单且高效，所以 Kubernetes 提供了应用部署，规划，更新，维护的一整套完整的机制。
-比起k8s是构建容器编排工具来说，在我看来k8s更像是一个虚拟服务容器级别的生态圈。在这个生态圈里、孵化出很多的东西（学起来没有底的)
-k8s服务架构
-Master node k8s集群控制节点，对集群迸行调度管理，接受集群外用户去集群操作请求; Master node由 API Server、 Scheduler、 Cluster state store（ETCD数据库）和 Controller Manger Server所组成; Worker node 集群工作节点，运行用户业务应用容器; Worker Node包含 kubelet、 kube proxy和 Container Runtime; 准备 k8s是基于docker的。要先安装docker
-Kubeadm 有多台vm推荐kubeadm安装k8s环境
-minikube 没有vm推荐使用minikube
-安装minikube（在docker跑了个ubantu跑了个minikube的节点）
-1 2 3 brew install minikube #启动 minikube start https://k8s.easydoc.net/docs/dRiQjyTY/28366845/6GiNOzyZ/9EX8Cp45
-主节点需要组件 docker（也可以是其他容器运行时） kubectl 集群命令行交互工具 工具 自己本地测试需要安装的工具
-minikube kubectl k9s好用的dashboard（可选） 1 2 3 4 5 brew install kubectl or brew install kubernetes-cli #测试一下，确保你安装的是最新的版本： kubectl version --client 常用的指令 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 #创建namespase kubectl create ns test # apply 创建一个k8s组建 kubectl apply -n test -f xxxx.</div><div class="post-footer">
-        <a href="/k8s/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/k8s/">k8s</a>,&nbsp;<a href="/tags/devops/">DevOps</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/gitlog/">Gitlog</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>XieYongbo/Ellioben</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-09-10">2022-09-10</time></span>&nbsp;<span class="post-category">included in <a href="/categories/develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Develop</a>&nbsp;<a href="/categories/tools/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Tools</a></span></div><div class="content">Git Changelog 原理/思路其实很简单，通过git log指令生成的日志。筛选出提交记录，提交时间。
-把这些内容提取出来，按照md格式写入发布文件中（changelog中）
-具体的筛选操作需要借助 format指令取操作。
-gitlog Format 默认git log 出来的格式并不是特别直观，很多时候想要更简便的输出更多或者更少的信息，这里列出几个git log的format。可以根据自己的需要定制。
-git log命令可一接受一个&ndash;pretty选项，来确定输出的格式.
-比如 ：
-如果我们只想输出hash.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 git log --pretty=format:&#34;%h&#34; #也可以直接使用format #e.g. git log --format=%B%aD Sat, 10 Sep 2022 16:03:16 +0800 修改文章排序 Sat, 10 Sep 2022 02:23:41 +0800 修改aidraw图片 Sat, 10 Sep 2022 01:08:54 +0800 修改aidraw Sat, 10 Sep 2022 00:43:50 +0800 添加作者链接 详细 命令 ：</div><div class="post-footer">
-        <a href="/gitlog/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/github/">github</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/linux/">Linux</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>XieYongbo/Ellioben</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-10">2022-08-10</time></span>&nbsp;<span class="post-category">included in <a href="/categories/develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Develop</a></span></div><div class="content">开发常用 持续更新&hellip;
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 ls cd pwd echo mv rm x.txt rm x.txt foo.txt rm -r cp -r dir1 dir2 scp -r mkdir -p df man man pwd man -h ls -h man --help #查看文件内容 cat (Concatenate and print Files) cat a.</div><div class="post-footer">
-        <a href="/linux/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/mycat/">Mycat</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>XieYongbo/Ellioben</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-09">2022-07-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Develop</a></span></div><div class="content">待更新 </div><div class="post-footer">
-        <a href="/mycat/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/database/">database</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/nginx/">Nginx简单实用和案例</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>XieYongbo/Ellioben</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-03-07">2022-03-07</time></span>&nbsp;<span class="post-category">included in <a href="/categories/develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Develop</a></span></div><div class="content">Nginx
-是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务。Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambler.ru站点（俄文：Рамблер）开发的，第一个公开版本0.1.0发布于2004年10月4日。2011年6月1日，nginx 1.0.4发布。
-其特点是占有内存少，并发能力强，事实上nginx的并发能力在同类型的网页服务器中表现较好，中国大陆使用nginx网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。在全球活跃的网站中有12.18%的使用比率，大约为2220万个网站。
-Nginx 是一个安装非常的简单、配置文件非常简洁（还能够支持perl语法）、Bug非常少的服务。Nginx 启动特别容易，并且几乎可以做到7*24不间断运行，即使运行数个月也不需要重新启动。你还能够不间断服务的情况下进行软件版本的升级。
-Nginx代码完全用C语言从头写成。官方数据测试表明能够支持高达 50,000 个并发连接数的响应。
-当然除了抗压以外还支持限流，自定义路由等等
-反向代理 代理服务端/保护服务端
-正向代理 代理客户端/保护客户端
-负载均衡 Nginx提供的负载均衡策略有2种
-内置策略和扩展策略
-内置策略：轮迿，加权轮询， Ip hash。
-扩展策略：自己定义，想怎么玩就怎么玩
-内置策略 轮询 以次循环
-加权轮询 根据权重
-IP hash phash对客户端请求的i进行hash操作，然后根据hash结果将同一个客户端p的请求分发给同一台服务器进行处理，可以解决 session不共享的问题。
-动静分离 动静分离：在我们的软件开发中，有些请求是需要后台处理的，有些请求是不需要经过后台处理的（如:css、htm、jpg、js等等文件），这些不需要经过后台处理的文件称为静态文件。让动态网站里的动态网页根据定规则把不变的资源和经常变的资源区分开来，动静资源做好了拆分以后，我们就可以根据静态资源的特点将其做缓存操作。提高资源响应的速度
-安装Nginx docker安装
-下载包安装
-1 2 3 4 5 6 7 8 9 10 11 tar -zxvf nginx-1.16.1.tar.gz #执行configure ./configure make #或 make install whereis nginx #发现nginx安装成功 启动验证 1 2 3 4 5 cd /usr/local/nginx/sbin/./nginx #启动 ./nginx -s stop #停止 .</div><div class="post-footer">
-        <a href="/nginx/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/server/">server</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/demo/"><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/demo/featured-image.jpg"
-        data-srcset="/demo/featured-image.jpg, /demo/featured-image.jpg 1.5x, /demo/featured-image.jpg 2x"
-        data-sizes="auto"
-        alt="/demo/featured-image.jpg"
-        title="第一个博客文的碎碎念 💭" /></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/demo/">Start...</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>XieYongbo/Ellioben</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-09-07">2021-09-07</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>碎碎念</a></span></div><div class="content">第一个博客文的碎碎念 💭</div><div class="post-footer">
-        <a href="/demo/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/xxx/">xxx</a></div></div>
-</article></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/blockchain/">Blockchain</a></div></div>
+</article><ul class="pagination"><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/2/">2</a>
+                    </span>
+                </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">XieYongbo/Ellioben</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">XieYongbo/Ellioben</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
