@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://Ellioben.github.io/smartcontract/" /><meta property="og:image" content="https://Ellioben.github.io/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-10-07T18:08:36+08:00" />
-<meta property="article:modified_time" content="2024-03-26T13:55:11+08:00" /><meta property="og:site_name" content="Yongbo&#39; Blog" />
+<meta property="article:modified_time" content="2024-07-14T12:41:40+08:00" /><meta property="og:site_name" content="Yongbo&#39; Blog" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://Ellioben.github.io/logo.png" /><meta name="twitter:title" content="SmartContract"/>
 <meta name="twitter:description" content="desc"/>
@@ -30,8 +30,8 @@
                             "url": "https:\/\/Ellioben.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "smartcontract, blockchain","wordcount":  355 ,
-        "url": "https:\/\/Ellioben.github.io\/smartcontract\/","datePublished": "2022-10-07T18:08:36+08:00","dateModified": "2024-03-26T13:55:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                        }],"genre": "posts","keywords": "smartcontract, blockchain","wordcount":  837 ,
+        "url": "https:\/\/Ellioben.github.io\/smartcontract\/","datePublished": "2022-10-07T18:08:36+08:00","dateModified": "2024-07-14T12:41:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
                     "@type": "ImageObject",
@@ -111,8 +111,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SmartContract</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/index.html" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Eloben</a></span>&nbsp;<span class="post-category">included in <a href="/categories/develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Develop</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-10-07">2022-10-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;355 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/smartcontract/" class="leancloud_visitors" data-flag-title="SmartContract">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-10-07">2022-10-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;837 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/smartcontract/" class="leancloud_visitors" data-flag-title="SmartContract">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -136,6 +136,19 @@
     </li>
     <li><a href="#demo-link">demo-link</a></li>
     <li><a href="#编写合约">编写合约</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#语法">语法</a>
+      <ul>
+        <li><a href="#constructor-demo">constructor /demo</a></li>
+        <li><a href="#modifier">modifier</a></li>
+        <li><a href="#ssert">ssert</a></li>
+        <li><a href="#require">Require</a></li>
+        <li><a href="#event--log">Event &amp; Log</a></li>
+        <li><a href="#map">Map</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>SmartContract</p>
@@ -456,12 +469,377 @@
 </li>
 </ul>
 <p>后续有时间会补充solidity相关的&hellip;</p>
-</div><div class="post-footer" id="post-footer">
+<h1 id="开发名词解释">开发名词解释</h1>
+<ul>
+<li>Decentralized app</li>
+<li>decentralized finance</li>
+<li>Ethereum Request for Comment (ERC)定义了符合规范的smart contract</li>
+<li>Smart contract（可以理解成交易脚本）</li>
+</ul>
+<h1 id="solidity">Solidity</h1>
+<ul>
+<li>
+<p>Solidity是一门面向合约的、为实现智能合约而创建的高级编程语言。这门语言受到了C++， Python 和Javascript语言的影响，设计的目的是能在以太坊虚拟机(EVM)上运行。</p>
+</li>
+<li>
+<p>Solidity是静态类型语言，支持继承、库和复杂的用户定义类型等特性。</p>
+</li>
+<li>
+<p>内含的类型除了常见编程语言中的标准类型，还包括 address等以太坊独有的类型， Solidity源码文件通常以。sol 作为扩展名</p>
+</li>
+<li>
+<p>目前尝试Solidity编程的最好的方式是使用Remix。 Remix 是一个基于Web浏览器的IDE，它可以让你编写Solidity 智能合约，然后部署并运行该智能合约。</p>
+</li>
+</ul>
+<h2 id="语法">语法</h2>
+<h3 id="constructor-demo">constructor /demo</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">StateVariables</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//两个变数/属性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">string</span> <span class="nb">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">address</span> <span class="n">owner</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">constructor</span><span class="p">()</span> <span class="k">public</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">name</span> <span class="o">=</span> <span class="s">&#34;unknow&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">owner</span> <span class="o">=</span> <span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">;</span><span class="c1">//初始化，执行者赋值给owner
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">setName</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">)</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span> <span class="o">==</span> <span class="n">owner</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">name</span> <span class="o">=</span> <span class="n">_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">revert</span><span class="p">(</span><span class="s">&#34;Permission denied.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">getName</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span><span class="p">(</span><span class="kt">string</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="modifier">modifier</h3>
+<p>执行完这个modifier之后，会继续执行原本function该做的事。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sol" data-lang="sol"><span class="line"><span class="cl"><span class="k">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">StateVariables</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//两个变数/属性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">string</span> <span class="nb">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">address</span> <span class="n">owner</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">constructor</span><span class="p">()</span> <span class="k">public</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">name</span> <span class="o">=</span> <span class="s">&#34;unknow&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">owner</span> <span class="o">=</span> <span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="p">;</span><span class="c1">//初始化，执行者赋值给owner
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">modifier</span> <span class="nf">onlyOwner</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">require</span><span class="p">(</span><span class="nb">msg</span><span class="p">.</span><span class="nb">sender</span><span class="o">==</span><span class="n">owner</span><span class="p">,</span><span class="s">&#34;Permission denied.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">_</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">setName</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">)</span> <span class="k">public</span> <span class="n">onlyOwner</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">name</span> <span class="o">=</span> <span class="n">_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">getName</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span><span class="p">(</span><span class="kt">string</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ssert">ssert</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="nb">assert</span><span class="p">(</span><span class="n">condition</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>assert 表示断言</li>
+</ul>
+<h3 id="require">Require</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">require(condition, &lt;String&gt;);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>earlycheck</p>
+<h3 id="event--log">Event &amp; Log</h3>
+<p>Logs 包含  ：</p>
+<ul>
+<li>address:由m個 contract address所産生</li>
+<li>blockHash, blockNumber, transactionHash, transactionIndex</li>
+<li>LogIndex：第幾個 log</li>
+<li>data: raw data (32 bytes 為單位)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">pragma</span> <span class="n">solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="o">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">contract</span> <span class="n">test</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span><span class="err">两个变数</span><span class="o">/</span><span class="err">属性</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">information</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uint</span> <span class="n">balance</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">event</span><span class="o">.</span><span class="n">LogCreate</span><span class="p">(</span><span class="n">string</span> <span class="n">information</span><span class="p">,</span><span class="n">unit</span> <span class="n">balance</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">event</span><span class="o">.</span><span class="n">LogCreate</span><span class="p">(</span><span class="n">string</span> <span class="n">index</span> <span class="n">information</span><span class="p">,</span><span class="n">unit</span> <span class="n">balance</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">constructor</span><span class="p">()</span> <span class="n">public</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">information</span> <span class="o">=</span> <span class="s2">&#34;xxxx&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">balance</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">emit</span> <span class="n">LogCreate</span> <span class="p">(</span><span class="n">information</span> <span class="p">,</span><span class="n">balance</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">emit</span> <span class="n">LogCreateIndex</span><span class="p">(</span><span class="n">information</span><span class="p">,</span><span class="n">balance</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="map">Map</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pragma solidity ^0.4.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">contract test {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    mapping(address=&gt;uint) public ledger;
+</span></span><span class="line"><span class="cl">    mapping(address=&gt;bool) public donors;
+</span></span><span class="line"><span class="cl">    address[] public donorList;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    function isDonors(address Addr) internal view returns(bool){
+</span></span><span class="line"><span class="cl">        return donors[Addr];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    function donate() public payable{
+</span></span><span class="line"><span class="cl">        if(msg.value&gt;=1 ether){
+</span></span><span class="line"><span class="cl">            if(!isDonor(msg.sender)){
+</span></span><span class="line"><span class="cl">                donors[msg.sender] = true;
+</span></span><span class="line"><span class="cl">                donorList.push(msg.sender);
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">            ledger[msg.sender]+=msg.value;
+</span></span><span class="line"><span class="cl">        }else{
+</span></span><span class="line"><span class="cl">            revert(&#34;&lt; 1 Ether&#34;)
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Struct</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">struct Student{
+</span></span><span class="line"><span class="cl">	string name；
+</span></span><span class="line"><span class="cl">	uint score;
+</span></span><span class="line"><span class="cl">	bool active;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Function</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pragma solidity ^0.4.25;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">library Set {
+</span></span><span class="line"><span class="cl">    struct Data{
+</span></span><span class="line"><span class="cl">        mapping(int =&gt; bool) data;  
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    function Insert(Data strong self,int key) public returns (bool){
+</span></span><span class="line"><span class="cl">        if(self.data[key])
+</span></span><span class="line"><span class="cl">            return false;
+</span></span><span class="line"><span class="cl">        self.data[key] = true;
+</span></span><span class="line"><span class="cl">        return true;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    function Remove(Data strong self,int key) public returns (bool) {
+</span></span><span class="line"><span class="cl">        if(!self.data[key])
+</span></span><span class="line"><span class="cl">            returns false;
+</span></span><span class="line"><span class="cl">        self.data[key] = false;
+</span></span><span class="line"><span class="cl">        return false;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    function Contain(Data strong self,int key) public view return (bool){
+</span></span><span class="line"><span class="cl">        returns self.data[key];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">contract Mian{
+</span></span><span class="line"><span class="cl">    Set.Data set;
+</span></span><span class="line"><span class="cl">    function insert(int key )public returns (bool) {
+</span></span><span class="line"><span class="cl">        return Set.Insert(set,key);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">     function remove(int key) public returns (bool) {
+</span></span><span class="line"><span class="cl">        return Set.Remove(set,key);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">     function remove(int key) public view returns (bool) {
+</span></span><span class="line"><span class="cl">        return Set.Contain(set,key);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-03-26&nbsp;<a class="git-hash" href="https://github.com/Ellioben/commit/635f3284dade0c6894ee57e5f9901582cc10e9f5" target="_blank" title="commit by Elioben(xieyongbo@tom.com) 635f3284dade0c6894ee57e5f9901582cc10e9f5: Complete the PMG information">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>635f328</a></span>
+                <span>Updated on 2024-07-14&nbsp;<a class="git-hash" href="https://github.com/Ellioben/commit/a65ae3301f121996dac0c166d818a4fe2f3610e6" target="_blank" title="commit by Elioben(xieyongbo@tom.com) a65ae3301f121996dac0c166d818a4fe2f3610e6: update smart contract">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>a65ae33</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>

@@ -237,3 +237,202 @@ DEPLOY&RUN
 
  后续有时间会补充solidity相关的...
 
+
+# 开发名词解释
+
+- Decentralized app
+- decentralized finance
+- Ethereum Request for Comment (ERC)定义了符合规范的smart contract	
+- Smart contract（可以理解成交易脚本）
+
+
+
+# Solidity
+
+- Solidity是一门面向合约的、为实现智能合约而创建的高级编程语言。这门语言受到了C++， Python 和Javascript语言的影响，设计的目的是能在以太坊虚拟机(EVM)上运行。
+
+- Solidity是静态类型语言，支持继承、库和复杂的用户定义类型等特性。
+
+- 内含的类型除了常见编程语言中的标准类型，还包括 address等以太坊独有的类型， Solidity源码文件通常以。sol 作为扩展名
+
+- 目前尝试Solidity编程的最好的方式是使用Remix。 Remix 是一个基于Web浏览器的IDE，它可以让你编写Solidity 智能合约，然后部署并运行该智能合约。
+
+## 语法
+### constructor /demo
+```solidity
+pragma solidity ^0.4.0;
+
+contract StateVariables {
+    //两个变数/属性
+    string name;
+    address owner;
+
+    constructor() public{
+        name = "unknow";
+        owner = msg.sender;//初始化，执行者赋值给owner
+    }
+
+    function setName(string _name) public returns (string){
+        if(msg.sender == owner){
+            name = _name;
+        } else {
+            revert("Permission denied.");
+        }
+        return name;
+    }
+    
+    function getName() public view returns(string){
+        return name;
+    }
+}
+```
+### modifier
+执行完这个modifier之后，会继续执行原本function该做的事。
+
+```sol
+pragma solidity ^0.4.0;
+
+contract StateVariables {
+    //两个变数/属性
+    string name;
+    address owner;
+
+    constructor() public{
+        name = "unknow";
+        owner = msg.sender;//初始化，执行者赋值给owner
+    }
+
+    modifier onlyOwner(){
+        require(msg.sender==owner,"Permission denied.");
+        _;
+    }
+
+    function setName(string _name) public onlyOwner returns (string){
+        name = _name;
+        return name;
+    }
+    
+    function getName() public view returns(string){
+        return name;
+    }
+}
+```
+
+### ssert
+
+```solidity
+assert(condition);
+```
+
+- assert 表示断言
+
+### Require
+ ```
+ require(condition, <String>);
+ ```
+ earlycheck
+
+ ### Event & Log
+Logs 包含  ：
+- address:由m個 contract address所産生 
+- blockHash, blockNumber, transactionHash, transactionIndex
+- LogIndex：第幾個 log
+- data: raw data (32 bytes 為單位) 
+
+```
+pragma solidity ^0.4.0;
+
+contract test {
+    //两个变数/属性
+    string information;
+    uint balance;
+    event.LogCreate(string information,unit balance);
+    event.LogCreate(string index information,unit balance);
+    constructor() public{
+        information = "xxxx";
+        balance = 180;
+        emit LogCreate (information ,balance)
+        emit LogCreateIndex(information,balance)
+    }
+}
+```
+### Map
+```
+pragma solidity ^0.4.0;
+
+contract test {
+
+    mapping(address=>uint) public ledger;
+    mapping(address=>bool) public donors;
+    address[] public donorList;
+
+    function isDonors(address Addr) internal view returns(bool){
+        return donors[Addr];
+    }
+    function donate() public payable{
+        if(msg.value>=1 ether){
+            if(!isDonor(msg.sender)){
+                donors[msg.sender] = true;
+                donorList.push(msg.sender);
+            }
+            ledger[msg.sender]+=msg.value;
+        }else{
+            revert("< 1 Ether")
+        }
+    }
+}
+```
+
+Struct
+
+```
+struct Student{
+	string name；
+	uint score;
+	bool active;
+}
+```
+Function 
+```
+pragma solidity ^0.4.25;
+
+library Set {
+    struct Data{
+        mapping(int => bool) data;  
+    }
+
+    function Insert(Data strong self,int key) public returns (bool){
+        if(self.data[key])
+            return false;
+        self.data[key] = true;
+        return true;
+    }
+
+    function Remove(Data strong self,int key) public returns (bool) {
+        if(!self.data[key])
+            returns false;
+        self.data[key] = false;
+        return false;
+    }
+
+    function Contain(Data strong self,int key) public view return (bool){
+        returns self.data[key];
+    }
+}
+
+
+contract Mian{
+    Set.Data set;
+    function insert(int key )public returns (bool) {
+        return Set.Insert(set,key);
+    }
+
+     function remove(int key) public returns (bool) {
+        return Set.Remove(set,key);
+    }
+
+     function remove(int key) public view returns (bool) {
+        return Set.Contain(set,key);
+    }
+}
+```
