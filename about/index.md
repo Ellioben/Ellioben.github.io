@@ -2,73 +2,56 @@
 
 # About Me 🤠
 
+🚸
 
-# 🚸
+我来自中国西安的一个小城市，已有5年以上的工作经验，曾在上海、成都、广东等地工作，对地域要求不高。
 
-来自中国西安的小城市🌃，工作4年有余，上海，成都，广东都有工作过，对<u>地域要求不高</u>。
+	•	拥有5年以上开发经验，接触很多Saas产品，熟悉SaaS架构/产品，熟悉Java、Go、Docker、K8s、前端技术和云服务平台操作，擅长使用Helm等云原生工具，对云原生Operator开发、ToC相关产品和AIGC相关产品（如LlamaIndex、LangChain）感兴趣，经常在GitHub上探索新技术和产品。
+	•	平时会写一些Shell/Python工具和脚本，也曾探索区块链Web3/Solidity智能合约等新技术，同时也持续关注AIGC生态产品。
+	•	热爱学习和分享，兴趣广泛，包括生活、游戏、数码、技术、电影、电视剧、神话、心理学和哲学等。
 
+典型的ENTP人格。
 
-为人随性，简单，兴趣爱好广泛，喜欢分享有趣的事情。不限于生活，游戏🤠，数码，技术，电影，追剧，神话🔱，心理，哲学... 
+	在技术方面，我会在空闲时撰写并发布文章，除了技术内容外，还会涵盖数码、旅游、文化、有趣的GitHub项目、个人见解、电影、电视剧、动漫和冷门实用的网站等内容。
 
-**典型ENTP人格。**
+主要掌握的技术：
 
-> 技术方面也会空闲佛系把文章写好上架，除了以下技术方面的内容外。后续还会有数码，旅游，文化，github上好玩的项目。xxx类事情的个人思路，电影，剧，动漫，冷门有用怪癖的网站等等...
+🔸 概括
 
----
+	•	Java、Golang、Python、Solidity开发，前端技术（JavaScript、JQuery、Vue等）
+	•	熟悉Linux、Shell、Docker、GRPC、Kubernetes，了解云原生生态，掌握K8s二次开发和CRD使用，熟悉服务监控和网格相关云产品
+	•	熟练使用Prometheus及其各种Exporter的二次开发
+	•	了解AIGC相关技术生态（如LlamaIndex、LangChain），以及区块链智能合约和Web3技术
+	•	熟悉常用设计模式、DDD、消息中间件和缓存中间件
 
-主要从事java相关的工作，当然前端/相应的框架，go，python，shell，运维，区块链，web3相关技术的也在平时工作和学习中有被涉及到。
+🔸 AI：
 
----
+	•	LlamaIndex、LangChain 自学
 
-#### 主要掌握的技术：
+🔸 服务&云原生&虚拟化：
 
-## 🔸 语言
+	•	分布式服务和网关框架（Nginx、Zookeeper等）
+	•	Docker容器化服务构建和部署，使用Docker Compose、Docker Swarm、K8s
+	•	了解docker的使用原理，cgroup，namespace，联合文件等等。了解k8s在使用容器引擎的方式。
+	•	DevOps理念和CI/CD构建，K8s在DevOps中的应用，有兴趣读过k8s，Istio主程源码。
+	•	熟悉CNCF下的混沌工程，有过相关工作经历（ChaosBlade、ChaosMesh、Litmus），熟悉K8s二次开发（Operator、Client-Go、Prometheus各种Exporter二次开发等）
 
-java,go,shell,python,js,vue,web3,html,css...
+🔸 技术框架：
 
-- java 开发，次熟悉 go 开发，Python小工具，Solidity简单的合约并部署上测试网做测试。
-- 前端 JavaScript、JQuery、vue；echarts，element-ui，bootstrap 等等前端框架。
-- linux，容器化docker，k8s，shell。
+	•	Spring、Spring Boot、Nacos、Spring MVC、Spring Cloud/Dubbo+Zookeeper、MyBatis Plus
+	•	Golang相关框架（GoZero、GORM、Hertz、Wire等）
+	•	了解DDD概念，工作中也有实践过。
 
-## 🔸 AI：
+🔸 数据/日志：
 
-> 待更新。。。
+	•	Oracle、MySQL、SQL Server
+	•	Redis、ClickHouse、对象存储、Kibana、Elasticsearch、Logstash、Loki
+	•	Kibana、Elasticsearch、Logstash、Loki
+	•	Grafana、Matedata等数据可视化操作
 
+🔸 区块链：
 
-## 🔸 技术框架：
-
-
-- spring，springboot，nacos，springmvc，springcloud/dubbo+zookeeper，mybatisplus。
-- go 多线程方面使用，GPM，开发有关的框架gin/gorm/hertz/wire等等做架构使用,或者有趣的项目，比如chaos实验，operator等等（go 框架使用偏向于 github 上查文档学习和使用）有空也会记录上。
-- DDD 泛谈
-
-## 🔸 DB：
-
- Oracal、Mysql、sqlserver sql 
-
-- Redis
-- clickhouse 
-- 对象存储
-- Kabana，ES，LK
-
-Grafana，Matedata 等数据可视化的一些操作。
-
-## 🔸 服务：
-
-- Nignx 、分布式服务和网关框架的搭建、zookeeper 集群搭建...
-- docker 容器化服务构建、部署和使用，docker compose/docker swarm/ k8s 。 
-- DevOps 的理念，CI/CD 的简单构建，k8s 在 DevOps 发挥的作用，istio。
-- Chaos实验，operator都有一点涉猎 ...。
-- 熟练 CNCF 基金会的开源项目 Grafana ,prometheus可视化系统监测，有空安排到博客上。
-## 🔸 区块链：
-
-- 区块链的共识机制，solidity 语法， Remix 部署合约并通过自己私有网络实现钱包和合约之间交易。 
-- web3 与合约之间的 ABI 调用，matemask 与区块链网络之间的交互。
-- 对区块链有关的比较感兴趣，关注各种与区块链有关的资讯，中心化、去中心化交易所，opensea+IPFS，链游...
-
-
-
-
-等有空闲时间都会陆续续放上文章....
-
+	•	区块链共识机制、Solidity语法、Remix部署合约、私有网络交易
+	•	Web3与智能合约ABI调用、MetaMask与区块链网络交互
+	•	关注区块链资讯、中心化/去中心化交易所、OpenSea+IPFS、链游等
 
