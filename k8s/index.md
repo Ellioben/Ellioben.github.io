@@ -240,7 +240,7 @@ clusterIp 设置为 None 就变成 Headless 了，不会再分配 IP，后面会
 
 
 
-### Controller
+### 常见的内置资源
 
 #### Deployment
 
@@ -305,4 +305,100 @@ StatefulSet 会固定每个 Pod 的名字
 
 #### job & cron job
 
+一个临时pod执行相应任务
+```yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: busybox
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
+          restartPolicy: OnFailure
+```
 
+
+
+
+#### PVC和Pod
+
+类似关系
+
+- **PV的全称是:** PersistentVolume（持久化卷），是对底层的共享存储的一种抽象，PV由管理员进行创建和配置，它和具体的底层的共享存储技术的实现方式有关，比如ceph、G| usterFS、NFS等，都是通过插件机制完成与共享存储的对接。I
+- **PVC的全称是:** PersistentVolume claim（持久化卷声明），PVC是用户存储的一种声明，PVC和Pod比较类似，Pod消耗的是节点，PVC消耗的是PV资源，Pod可以请求CPU和内存，而PVC可以请求特定的存储空间和访问模式。对于真正使用存储的用户不需要关心底层的存储实现细节，只需要直接使用PVC即可。
+
+但是通过PvC请求到一定的存储空间也很有可能不足以满足应用对于存储设备的各种需求，而且不同的应用程序对于存储性能的要求可能也不尽相同，比如读写速度、并发性能等，为了解决这一问题， Kubernetes又为我们引入了一个新的资源对象: StorageClass，通过 StorageClass的定义，管理员可以将存储资源定义为某种类型的资源，比如快速存储、慢速存储等，用户根据StorageClass的描述就可以非常直观的知道各种存储资源的具体特性了，这样就可以根据应用的特性去申请合适的存储资源了。
+
+
+
+### 自定义资源
+```yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  # 名字必需与下面的 spec 字段匹配，并且格式为 '<名称的复数形式>.<组名>'
+  name: demos.example.com
+spec:
+  # 组名称，用于 REST API: /apis/<组>/<版本>
+  group: example.com
+  names:
+    # 名称的复数形式，用于 URL：/apis/<组>/<版本>/<名称的复数形式>
+    plural: demos
+    # 名称的单数形式，作为命令行使用时和显示时的别名
+    singular: demo
+    # kind 通常是单数形式的帕斯卡编码（PascalCased）形式。你的资源清单会使用这一形式。
+    kind: Demo
+    # shortNames 允许你在命令行使用较短的字符串来匹配资源
+    shortNames:
+    - dm
+    categories:
+    - all
+  # 可以是 Namespaced 或 Cluster
+  scope: Namespaced
+  # 列举此 CustomResourceDefinition 所支持的版本
+  versions: #*****是个数组*****>阿尔法，bate版本....
+    - name: v1
+      # 每个版本都可以通过 served 标志来独立启用或禁止
+      served: true
+      # 其中一个且只有一个版本必需被标记为存储版本存在ETCD里
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                name:
+                  type: string
+                  pattern: '^test$'
+      additionalPrinterColumns:
+      - name: CR-Name
+        type: string
+        jsonPath: .spec.name
+```
+
+#### 使用自定义资源
+
+待CRD创建完成之后，我们就可以使用它来创建我们的自定义资源了，其创建方式跟内置的资源如Pod这些是一样的，只是需要将kind、apiVersion指定为我们CRD中声明的值，比如使用上面例子中的CRD定义资源：
+
+```yaml
+apiVersion: "example.com/v1"
+kind: Demo
+metadata:
+  name: crd-demo
+spec:
+  name: test
+```
+也可以通过一些工具去生成
